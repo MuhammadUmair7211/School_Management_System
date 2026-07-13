@@ -38,8 +38,10 @@ export default function FeeCollectionChart() {
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <div className="flex flex-col items-start">
-      <h2 className="font-semibold text-slate-600">Fees Collection Overview</h2>
+    <div className="flex flex-col items-start p-2">
+      <h2 className="font-semibold text-slate-600 mb-2">
+        Fees Collection Overview
+      </h2>
 
       <div className="flex flex-col lg:flex-row items-center justify-between gap-2">
         {/* Chart */}

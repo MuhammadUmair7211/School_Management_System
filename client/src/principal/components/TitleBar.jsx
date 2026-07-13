@@ -20,7 +20,7 @@ const TitleBar = () => {
   };
 
   return (
-    <header className="bg-white  px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+    <header className="bg-white px-4 py-2 flex flex-wrap items-center justify-between">
       {/* Left */}
       <div>
         <h1 className="text-2xl font-bold text-slate-800">

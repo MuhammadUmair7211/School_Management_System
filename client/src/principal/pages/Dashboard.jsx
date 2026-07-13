@@ -94,27 +94,39 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="h-full flex flex-wrap gap-2">
-      {/* Statistics */}
-      <div className="flex flex-col flex-1">
+    <div className="grid grid-cols-1 xl:grid-cols-12 gap-2 h-full">
+      {/* LEFT */}
+      <div className="xl:col-span-9 space-y-2">
         <StatCard statistics={statistics} />
-        <div className="mt-2 grid grid-cols-1 xl:grid-cols-12 gap-2">
-          {/* Graph */}
-          <div className="xl:col-span-8 border border-slate-200 rounded-xl p-2 flex flex-col">
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
+          <div className="lg:col-span-8">
             <AttendanceChart />
           </div>
 
-          {/* Overview */}
-          <div className="xl:col-span-4 border border-slate-200 rounded-xl p-2">
+          <div className="lg:col-span-4">
             <QuickActions />
           </div>
         </div>
+
+        <div className="hidden md:block overflow-hidden rounded-xl shadow-sm">
+          <img
+            src="/footer-logo.jpg"
+            alt="School Banner"
+            className="w-full h-44 object-cover"
+          />
+        </div>
       </div>
 
-      {/* right side fee collection overview */}
-      <div className="w-full xl:w-90 border border-slate-200 rounded-xl p-4">
-        <FeeCollectionChart />
-        <RecentActivities />
+      {/* RIGHT */}
+      <div className="xl:col-span-3 flex flex-col gap-4 border border-slate-200 rounded-xl p-4">
+        <div className="">
+          <FeeCollectionChart />
+        </div>
+
+        <div className="flex-1">
+          <RecentActivities />
+        </div>
       </div>
     </div>
   );

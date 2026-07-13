@@ -112,17 +112,17 @@ const QuickActions = () => {
     },
   ];
   return (
-    <div>
-      <h2 className="text-sm text-slate-800 mb-2">Quick Actions</h2>
+    <div className="p-4 border border-slate-200 rounded-xl">
+      <h2 className="font-semibold text-slate-600 mb-2">Quick Actions</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         {actionButtons.map((action, index) => (
           <button
             key={index}
             className={`flex flex-col items-center justify-center gap-2 rounded-xl ${action.cardBg} p-2 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer border ${action.borderColor}`}
           >
             <div
-              className={`w-10 h-10 rounded-full ${action.iconBg} ${action.iconColor} flex items-center justify-center`}
+              className={`w-12 h-12 rounded-full ${action.iconBg} ${action.iconColor} flex items-center justify-center`}
             >
               {action.icon}
             </div>
