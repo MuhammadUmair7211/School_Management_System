@@ -1,6 +1,6 @@
 const PersonalInformationForm = () => {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+    <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
       <h2 className="mb-5 text-lg font-semibold text-slate-800">
         Parent Information
       </h2>

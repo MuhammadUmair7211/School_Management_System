@@ -22,7 +22,7 @@ const QuickActions = () => {
       iconBg: "bg-blue-200",
       cardBg: "bg-blue-100",
       borderColor: "border-blue-300",
-      path: "/add-new-student",
+      path: "/students/add-new-student",
     },
     {
       icon: <UserCog size={24} />,
@@ -31,7 +31,7 @@ const QuickActions = () => {
       iconBg: "bg-emerald-200",
       cardBg: "bg-emerald-100",
       borderColor: "border-emerald-300",
-      path: "/add-new-teacher",
+      path: "/teachers/add-new-teacher",
     },
     {
       icon: <School size={24} />,
@@ -40,7 +40,7 @@ const QuickActions = () => {
       iconBg: "bg-violet-200",
       cardBg: "bg-violet-100",
       borderColor: "border-violet-300",
-      path: "/add-new-class",
+      path: "/classes/add-new-class",
     },
     {
       icon: <BookOpen size={24} />,
@@ -49,7 +49,7 @@ const QuickActions = () => {
       iconBg: "bg-orange-200",
       cardBg: "bg-orange-100",
       borderColor: "border-orange-300",
-      path: "/add-new-subject",
+      path: "/subjects/add-new-subject",
     },
     {
       icon: <ClipboardCheck size={24} />,
@@ -141,7 +141,7 @@ const QuickActions = () => {
               {action.icon}
             </div>
 
-            <span className="text-sm font-medium text-slate-700">
+            <span className="text-sm font-medium text-center text-slate-700">
               {action.title}
             </span>
           </Link>

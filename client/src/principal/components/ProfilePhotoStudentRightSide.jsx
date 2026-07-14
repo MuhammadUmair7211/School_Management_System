@@ -1,61 +1,89 @@
-import { Pencil, Upload, X } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle2,
+  FileText,
+  ImagePlus,
+  Upload,
+  X,
+} from "lucide-react";
 
 const ProfilePhotoStudentRightSide = () => {
   return (
-    <div className="h-full flex flex-col">
-      {/* Title */}
-      <h2 className="text-lg font-semibold text-slate-800">Student Photo</h2>
+    <div className="sticky top-4 space-y-3">
+      {/* Upload */}
+      <div className="rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
+        <label className="group relative flex cursor-pointer flex-col items-center rounded-xl border-2 border-dashed border-slate-300 p-6 transition hover:border-blue-500 hover:bg-blue-50">
+          <img
+            src="https://ui-avatars.com/api/?name=Student&background=E2E8F0&color=475569&size=200"
+            alt="Student"
+            className="h-36 w-36 rounded-full border-4 border-slate-100 object-cover"
+          />
 
-      {/* Upload Card */}
-      <div className="mt-4 rounded-xl border border-dashed border-slate-300 p-4 text-center">
-        <img
-          src="https://ui-avatars.com/api/?name=Student&background=E2E8F0&color=475569&size=180"
-          alt="Student"
-          className="mx-auto h-32 w-32 rounded-full border-4 border-slate-100 object-cover"
-        />
+          {/* Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/40 opacity-0 transition duration-300 group-hover:opacity-100">
+            <div className="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-slate-700">
+              <ImagePlus size={18} />
+              Change Photo
+            </div>
+          </div>
 
-        <h3 className="mt-4 text-base font-semibold text-slate-800">
-          Upload Student Photo
-        </h3>
+          <div className="text-center mt-4">
+            <h3 className="font-semibold text-slate-700">Click to Upload</h3>
+            <p className="mt-1 text-sm text-slate-500">JPG, PNG or WEBP</p>
+            <p className="text-xs text-slate-400">Maximum file size: 2 MB</p>
+          </div>
 
-        <p className="mt-1 text-sm text-slate-500">
-          JPG, PNG or WEBP (Maximum 2MB)
-        </p>
-
-        <label className="mt-5 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 duration-300">
-          <Upload size={18} />
-          Choose File
           <input
             type="file"
             accept=".jpg,.jpeg,.png,.webp"
             className="hidden"
           />
         </label>
+
+        <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700">
+          <Upload size={18} />
+          Upload Photo
+        </button>
       </div>
 
-      {/* Quick Note */}
-      <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
-        <div className="mb-2 flex items-center gap-2">
-          <Pencil className="text-amber-600" size={18} />
-          <h3 className="font-semibold text-amber-700">Quick Notes</h3>
-        </div>
+      {/* Notes */}
+      <div className="rounded-xl border border-amber-200 bg-amber-50 p-2">
+        <h3 className="mb-2 font-semibold text-amber-700">Important Notes</h3>
 
-        <ul className="space-y-2 text-sm text-slate-600 list-disc pl-5">
-          <li>Fields marked with (*) are required.</li>
-          <li>Verify all information before saving.</li>
-          <li>Use a clear passport-size student photograph.</li>
-        </ul>
+        <div className="space-y-2">
+          <div className="flex gap-3">
+            <ImagePlus className="text-amber-600" size={18} />
+            <p className="text-sm text-slate-600">
+              Upload a recent passport-size photograph.
+            </p>
+          </div>
+
+          <div className="flex gap-3">
+            <AlertCircle className="text-amber-600" size={18} />
+            <p className="text-sm text-slate-600">
+              Fields marked with (*) are mandatory.
+            </p>
+          </div>
+
+          <div className="flex gap-3">
+            <CheckCircle2 className="text-amber-600" size={18} />
+            <p className="text-sm text-slate-600">
+              Verify information before final submission.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Buttons */}
-      <div className="mt-auto space-y-4">
-        <button className="w-full rounded-lg bg-indigo-600 py-3 font-medium text-white transition hover:bg-indigo-700">
-          Save & Next
+      <div className="space-y-3">
+        <button className="flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white py-3 font-semibold text-slate-700 transition hover:bg-slate-100">
+          <FileText size={18} />
+          Preview Form
         </button>
 
-        <button className="w-full flex items-center justify-center gap-2 rounded-lg border border-red-200 px-5 py-3 font-medium text-red-600 transition hover:bg-red-50">
+        <button className="flex w-full items-center justify-center gap-2 rounded-lg border border-red-200 bg-white py-3 font-semibold text-red-600 transition hover:bg-red-50">
           <X size={18} />
-          Cancel
+          Cancel Registration
         </button>
       </div>
     </div>

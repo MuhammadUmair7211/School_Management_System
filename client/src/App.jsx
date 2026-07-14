@@ -18,6 +18,9 @@ import Notifications from "./principal/pages/Notifications";
 import EditStudentProfilePage from "./principal/pages/EditStudentProfilePage";
 import AddNewStudent from "./principal/pages/AddNewStudent";
 import AddNewTeacher from "./principal/pages/AddNewTeacher";
+import AddClass from "./principal/pages/AddClass";
+import AddNewSubject from "./principal/pages/AddNewSubject";
+import Activities from "./principal/pages/Activities";
 
 const App = () => {
   return (
@@ -33,8 +36,10 @@ const App = () => {
 
         <Route path="teachers" element={<Teachers />} />
         <Route path="teachers/add-new-teacher" element={<AddNewTeacher />} />
-        <Route path="/classes" element={<Classes />} />
-        <Route path="/subjects" element={<Subjects />} />
+        <Route path="classes" element={<Classes />} />
+        <Route path="/classes/add-new-class" element={<AddClass />} />
+        <Route path="subjects" element={<Subjects />} />
+        <Route path="/subjects/add-new-subject" element={<AddNewSubject />} />
         <Route path="/attendance" element={<Attendance />} />
         <Route path="/examinations" element={<Examinations />} />
         <Route path="/fee-management" element={<FeeManagement />} />
@@ -45,6 +50,7 @@ const App = () => {
         <Route path="/settings" element={<Settings />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/view-calendar" element={<Calendar />} />
+        <Route path="/activities" element={<Activities />} />
       </Route>
     </Routes>
   );

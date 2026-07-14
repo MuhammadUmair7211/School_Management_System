@@ -6,6 +6,7 @@ import FeeCollectionChart from "../components/FeeCollectionChart";
 import { useSelector } from "react-redux";
 import AttendanceChart from "../components/AttendanceChart";
 import RecentActivities from "../components/RecentActivities";
+import TitleBar from "../components/TitleBar";
 const Dashboard = () => {
   const { teachers } = useSelector((state) => state.teachers);
 
@@ -94,38 +95,41 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-12 gap-2 h-full">
-      {/* LEFT */}
-      <div className="xl:col-span-9 space-y-2">
-        <StatCard statistics={statistics} />
+    <div className="flex h-full flex-col overflow-hidden">
+      <TitleBar />
+      <div className="flex-1 grid grid-cols-1 xl:grid-cols-12 gap-2">
+        {/* LEFT */}
+        <div className="xl:col-span-9 space-y-2">
+          <StatCard statistics={statistics} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
-          <div className="lg:col-span-8">
-            <AttendanceChart />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
+            <div className="lg:col-span-8">
+              <AttendanceChart />
+            </div>
+
+            <div className="lg:col-span-4">
+              <QuickActions />
+            </div>
           </div>
 
-          <div className="lg:col-span-4">
-            <QuickActions />
+          <div className="hidden md:block overflow-hidden rounded-xl shadow-sm">
+            <img
+              src="/footer-logo.jpg"
+              alt="School Banner"
+              className="w-full h-44 object-cover"
+            />
           </div>
         </div>
 
-        <div className="hidden md:block overflow-hidden rounded-xl shadow-sm">
-          <img
-            src="/footer-logo.jpg"
-            alt="School Banner"
-            className="w-full h-44 object-cover"
-          />
-        </div>
-      </div>
+        {/* RIGHT */}
+        <div className="xl:col-span-3 flex flex-col gap-4 shadow-sm border border-slate-200 rounded-xl p-4">
+          <div className="">
+            <FeeCollectionChart />
+          </div>
 
-      {/* RIGHT */}
-      <div className="xl:col-span-3 flex flex-col gap-4 shadow-sm border border-slate-200 rounded-xl p-4">
-        <div className="">
-          <FeeCollectionChart />
-        </div>
-
-        <div className="flex-1">
-          <RecentActivities />
+          <div className="flex-1">
+            <RecentActivities />
+          </div>
         </div>
       </div>
     </div>
