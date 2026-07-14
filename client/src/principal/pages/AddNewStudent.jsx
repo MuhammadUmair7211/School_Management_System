@@ -5,7 +5,7 @@ import TimeLine from "../components/TimeLine";
 const AddNewStudent = () => {
   const handleAddButton = () => {};
   return (
-    <div>
+    <div className="h-full">
       <Header
         heading="Add New Student"
         buttonText="Create Student"

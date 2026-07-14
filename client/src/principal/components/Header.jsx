@@ -3,10 +3,10 @@ import BreadCrumb from "./BreadCrumb";
 
 const Header = ({ heading, buttonText, onClick }) => {
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between">
+    <div className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white  p-4 shadow-sm md:flex-row md:items-center md:justify-between">
       {/* Left */}
       <div>
-        <h1 className="text-3xl font-bold text-slate-800">{heading}</h1>
+        <h1 className="text-2xl font-bold text-slate-800">{heading}</h1>
         <BreadCrumb />
       </div>
 

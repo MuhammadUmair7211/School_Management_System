@@ -72,7 +72,9 @@ const StudentTable = ({ students, setSelectedStudent }) => {
                   <div className="flex items-center justify-center gap-2">
                     <button
                       onClick={() =>
-                        navigate(`/edit-student-profile/${student._id}`)
+                        navigate(
+                          `/students/edit-student-profile/${student._id}`,
+                        )
                       }
                       className="rounded-full bg-amber-100 p-2 text-amber-600 transition hover:bg-amber-200 cursor-pointer"
                     >

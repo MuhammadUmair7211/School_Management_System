@@ -11,7 +11,7 @@ const TimeLine = () => {
     "Documents",
   ];
   return (
-    <div className="p-2 border border-slate-200 rounded-xl shadow-md mt-2">
+    <div className="p-4 border border-slate-200 rounded-xl shadow-md mt-2">
       <div className="flex items-center justify-between">
         {steps.map((step, index) => {
           return (
@@ -29,11 +29,7 @@ const TimeLine = () => {
               {index !== steps.length - 1 && (
                 <div
                   className={`ml-5 h-1 w-10 rounded-full ${
-                    index < currentStep
-                      ? "bg-green-500"
-                      : index === currentStep
-                        ? "bg-green-500"
-                        : "bg-slate-300"
+                    index < currentStep ? "bg-green-500" : "bg-slate-300"
                   }`}
                 />
               )}
