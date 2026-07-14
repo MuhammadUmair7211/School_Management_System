@@ -119,7 +119,7 @@ const Dashboard = () => {
       </div>
 
       {/* RIGHT */}
-      <div className="xl:col-span-3 flex flex-col gap-4 border border-slate-200 rounded-xl p-4">
+      <div className="xl:col-span-3 flex flex-col gap-4 shadow-sm border border-slate-200 rounded-xl p-4">
         <div className="">
           <FeeCollectionChart />
         </div>

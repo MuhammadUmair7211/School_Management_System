@@ -33,9 +33,9 @@ const SideBar = () => {
         >
           <div className="flex items-center gap-3 ">
             <img
-              src={profile?.profileImage}
-              className="w-10 h-10 rounded-full object-cover"
-              alt="Profile"
+              src={`https://ui-avatars.com/api/?name=${profile?.name}`}
+              alt={profile?.name}
+              className="w-10 h-10 rounded-full"
             />
 
             <div className="hidden md:block">

@@ -15,14 +15,24 @@ import Profile from "./principal/pages/Profile";
 import Calendar from "./principal/pages/Calendar";
 import Teachers from "./principal/pages/Teachers";
 import Notifications from "./principal/pages/Notifications";
+import EditStudentProfilePage from "./principal/pages/EditStudentProfilePage";
+import AddNewStudent from "./principal/pages/AddNewStudent";
+import AddNewTeacher from "./principal/pages/AddNewTeacher";
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<PrincipalLayout />}>
         <Route index element={<Dashboard />} />
-        <Route path="/students" element={<Students />} />
-        <Route path="/teachers" element={<Teachers />} />
+        <Route path="students" element={<Students />} />
+        <Route
+          path="students/edit-student-profile/:id"
+          element={<EditStudentProfilePage />}
+        />
+        <Route path="students/add-new-student" element={<AddNewStudent />} />
+
+        <Route path="teachers" element={<Teachers />} />
+        <Route path="teachers/add-new-teacher" element={<AddNewTeacher />} />
         <Route path="/classes" element={<Classes />} />
         <Route path="/subjects" element={<Subjects />} />
         <Route path="/attendance" element={<Attendance />} />
@@ -34,7 +44,7 @@ const App = () => {
         <Route path="/messages" element={<Messages />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/view-calendar" element={<Calendar />} />
       </Route>
     </Routes>
   );

@@ -77,7 +77,7 @@ const navigationGroups = [
       {
         icon: <Calendar size={18} />,
         name: "Calendar",
-        path: "/calendar",
+        path: "/view-calendar",
       },
       {
         icon: <MessageSquare size={18} />,
@@ -119,7 +119,7 @@ const NavigationLinks = () => {
                 className={({ isActive }) =>
                   `flex items-center justify-center md:justify-start gap-0 md:gap-3 p-3 md:px-4 md:py-3 rounded-full border-l-0 md:border-l-4 transition-all duration-300 ${
                     isActive
-                      ? "bg-violet-600 md:border-violet-300 text-white shadow-lg"
+                      ? "bg-blue-600 md:border-blue-300 text-white shadow-lg"
                       : "border-transparent text-slate-300 hover:bg-slate-800 hover:text-white"
                   }`
                 }
