@@ -73,7 +73,7 @@ const StudentTable = ({ students, setSelectedStudent }) => {
                     <button
                       onClick={() =>
                         navigate(
-                          `/students/edit-student-profile/${student._id}`,
+                          `/students/edit-existing-student/${student._id}`,
                         )
                       }
                       className="rounded-full bg-amber-100 p-2 text-amber-600 transition hover:bg-amber-200 cursor-pointer"

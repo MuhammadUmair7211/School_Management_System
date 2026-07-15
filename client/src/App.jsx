@@ -18,9 +18,11 @@ import Notifications from "./principal/pages/Notifications";
 import EditStudentProfilePage from "./principal/pages/EditStudentProfilePage";
 import AddNewStudent from "./principal/pages/AddNewStudent";
 import AddNewTeacher from "./principal/pages/AddNewTeacher";
-import AddClass from "./principal/pages/AddClass";
 import AddNewSubject from "./principal/pages/AddNewSubject";
 import Activities from "./principal/pages/Activities";
+import AddNewClass from "./principal/pages/AddNewClass";
+import EditExistingClass from "./principal/pages/EditExistingClass";
+import EditExistingTeacher from "./principal/pages/EditExistingTeacher";
 
 const App = () => {
   return (
@@ -29,15 +31,23 @@ const App = () => {
         <Route index element={<Dashboard />} />
         <Route path="students" element={<Students />} />
         <Route
-          path="students/edit-student-profile/:id"
+          path="students/edit-existing-student/:id"
           element={<EditStudentProfilePage />}
         />
         <Route path="students/add-new-student" element={<AddNewStudent />} />
 
         <Route path="teachers" element={<Teachers />} />
-        <Route path="teachers/add-new-teacher" element={<AddNewTeacher />} />
+        <Route
+          path="/teachers/edit-existing-teacher/:id"
+          element={<EditExistingTeacher />}
+        />
+        <Route path="/teachers/add-new-teacher" element={<AddNewTeacher />} />
         <Route path="classes" element={<Classes />} />
-        <Route path="/classes/add-new-class" element={<AddClass />} />
+        <Route path="/classes/add-new-class" element={<AddNewClass />} />
+        <Route
+          path="/classes/edit-existing-class/:id"
+          element={<EditExistingClass />}
+        />
         <Route path="subjects" element={<Subjects />} />
         <Route path="/subjects/add-new-subject" element={<AddNewSubject />} />
         <Route path="/attendance" element={<Attendance />} />

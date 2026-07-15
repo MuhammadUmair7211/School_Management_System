@@ -13,8 +13,10 @@ import {
   TestTube,
   Trash2,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const TeacherTable = ({ teachers, setSelectedTeacher }) => {
+  const navigate = useNavigate();
   const iconClass = "h-5 w-5";
   const wrapperClass = "flex h-9 w-9 items-center justify-center rounded-xl";
 
@@ -227,7 +229,14 @@ const TeacherTable = ({ teachers, setSelectedTeacher }) => {
                   {/* Actions */}
                   <td onClick={(e) => e.stopPropagation()} className="p-2">
                     <div className="flex items-center justify-center gap-2">
-                      <button className="rounded-lg border border-slate-200 p-2 transition hover:bg-blue-50">
+                      <button
+                        onClick={() =>
+                          navigate(
+                            `/teachers/edit-existing-teacher/${teacher._id}`,
+                          )
+                        }
+                        className="rounded-lg border border-slate-200 p-2 transition hover:bg-blue-50"
+                      >
                         <Pencil size={16} className="text-blue-600" />
                       </button>
 

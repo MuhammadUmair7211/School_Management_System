@@ -5,7 +5,6 @@ import StudentFilterBar from "../components/StudentFilterBar";
 import { useState } from "react";
 import StudentProfileSideBar from "../components/StudentProfileSideBar";
 import { useNavigate } from "react-router-dom";
-import TitleBar from "../components/TitleBar";
 import Pagination from "../components/Pagination";
 import StudentStatistics from "../components/StudentStatistics";
 
@@ -15,9 +14,7 @@ const Students = () => {
   const navigate = useNavigate();
   return (
     <div className="flex h-full flex-col overflow-hidden">
-      <TitleBar />
-
-      <div className="mt-2 flex flex-1 flex-col gap-2 overflow-hidden lg:flex-row">
+      <div className="flex flex-1 flex-col gap-2 overflow-hidden lg:flex-row">
         {/* Main Content */}
         <div className="min-w-0 flex-1 overflow-hidden">
           <Header
