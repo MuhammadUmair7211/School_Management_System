@@ -9,10 +9,10 @@ import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 const StudentRegistrationForm = ({ currentStep, setCurrentStep }) => {
   return (
-    <div className="mt-2 grid grid-cols-1 gap-2 lg:grid-cols-12">
+    <div className="grid grid-cols-1 gap-2 lg:grid-cols-12">
       {/* Left Side */}
-      <div className="space-y-4 lg:col-span-8">
-        <div className="min-h-[50vh] w-full">
+      <div className="flex flex-col space-y-4 lg:col-span-8">
+        <div>
           {currentStep == 1 && <BasicInformationForm />}
           {currentStep == 2 && <PersonalInformationForm />}
           {currentStep == 3 && <AcademicInformationForm />}
@@ -21,7 +21,7 @@ const StudentRegistrationForm = ({ currentStep, setCurrentStep }) => {
           {currentStep == 6 && <DocumentsForm />}
         </div>
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           {/* Previous */}
           <button
             onClick={() => setCurrentStep((prev) => prev - 1)}

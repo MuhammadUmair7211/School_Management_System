@@ -3,12 +3,12 @@ import SideBar from "../components/SideBar";
 
 const PrincipalLayout = () => {
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex min-h-screen overflow-hidden">
       {/* Sidebar */}
       <SideBar />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto p-2">
+      <main className="flex-1 p-2">
         <Outlet />
       </main>
     </div>

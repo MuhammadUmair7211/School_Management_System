@@ -6,10 +6,12 @@ import {
   Upload,
   X,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const ProfilePhotoStudentRightSide = () => {
+const ProfilePhotoTeacherRightSide = () => {
+  const navigate = useNavigate();
   return (
-    <div className="sticky top-4 space-y-3">
+    <div className="flex flex-col h-full">
       {/* Upload */}
       <div className="">
         <label className="group relative flex cursor-pointer flex-col items-center rounded-xl border-2 border-dashed border-slate-300 p-6 transition hover:border-blue-500 hover:bg-blue-50">
@@ -47,7 +49,7 @@ const ProfilePhotoStudentRightSide = () => {
       </div>
 
       {/* Notes */}
-      <div className="rounded-xl border border-amber-200 bg-amber-50 p-2">
+      <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-2">
         <h3 className="mb-2 font-semibold text-amber-700">Important Notes</h3>
 
         <div className="space-y-2">
@@ -81,7 +83,10 @@ const ProfilePhotoStudentRightSide = () => {
           Preview Form
         </button>
 
-        <button className="flex w-full items-center justify-center gap-2 rounded-lg border border-red-200 bg-white py-3 font-semibold text-red-600 transition hover:bg-red-50">
+        <button
+          onClick={() => navigate("/")}
+          className="flex w-full items-center justify-center gap-2 rounded-lg border border-red-200 bg-white py-3 font-semibold text-red-600 transition hover:bg-red-50"
+        >
           <X size={18} />
           Cancel Registration
         </button>
@@ -90,4 +95,4 @@ const ProfilePhotoStudentRightSide = () => {
   );
 };
 
-export default ProfilePhotoStudentRightSide;
+export default ProfilePhotoTeacherRightSide;

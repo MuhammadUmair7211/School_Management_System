@@ -7,19 +7,22 @@ const AddNewStudent = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const handleAddButton = () => {};
   return (
-    <div className="h-full">
+    <div className="flex flex-col min-h-screen">
       <Header
         heading="Add New Student"
         buttonText="Create Student"
+        details="Fill in the details to register a new student in the system"
         onClick={handleAddButton}
       />
       <div className="hidden lg:block">
         <TimeLine currentStep={currentStep} />
       </div>
-      <StudentRegistrationForm
-        currentStep={currentStep}
-        setCurrentStep={setCurrentStep}
-      />
+      <div className="flex-1 mt-2 overflow-y-auto">
+        <StudentRegistrationForm
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+        />
+      </div>
     </div>
   );
 };

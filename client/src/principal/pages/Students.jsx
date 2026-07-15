@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-import StudentsStats from "../components/StudentStats";
 import { useSelector } from "react-redux";
 import StudentTable from "../components/StudentTable";
 import StudentFilterBar from "../components/StudentFilterBar";
@@ -7,14 +6,13 @@ import { useState } from "react";
 import StudentProfileSideBar from "../components/StudentProfileSideBar";
 import { useNavigate } from "react-router-dom";
 import TitleBar from "../components/TitleBar";
+import Pagination from "../components/Pagination";
+import StudentStatistics from "../components/StudentStatistics";
 
 const Students = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
-
   const { students } = useSelector((state) => state.students);
-
   const navigate = useNavigate();
-
   return (
     <div className="flex h-full flex-col overflow-hidden">
       <TitleBar />
@@ -28,13 +26,19 @@ const Students = () => {
             onClick={() => navigate("/students/add-new-student")}
           />
 
-          <StudentsStats students={students} />
+          <StudentStatistics students={students} />
 
           <StudentFilterBar />
 
           <StudentTable
             students={students}
             setSelectedStudent={setSelectedStudent}
+          />
+          <Pagination
+            currentPage={1}
+            totalPages={8}
+            itemsPerPage={10}
+            totalStudents={78}
           />
         </div>
 

@@ -7,7 +7,7 @@ import {
   Users,
 } from "lucide-react";
 
-const StudentsStats = ({ students }) => {
+const StudentStatistics = ({ students }) => {
   const totalStudents = students.length;
   const boys = students.filter((student) => student.gender === "Male");
   const girls = students.filter((student) => student.gender === "Female");
@@ -130,4 +130,4 @@ const StudentsStats = ({ students }) => {
   );
 };
 
-export default StudentsStats;
+export default StudentStatistics;

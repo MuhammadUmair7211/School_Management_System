@@ -93,7 +93,7 @@ const StudentProfileSideBar = ({ student, onClose }) => {
       <div className="flex items-center justify-between">
         <button
           onClick={onClose}
-          className=" hover:text-red-500 ml-auto cursor-pointer hover:rotate-360 transition-transform duration-700"
+          className=" hover:text-red-500 ml-auto cursor-pointer hover:rotate-90 transition-transform duration-700"
         >
           <X size={20} />
         </button>
@@ -161,22 +161,22 @@ const StudentProfileSideBar = ({ student, onClose }) => {
 
       {/* details */}
       {sections.map((section) => (
-        <div key={section.title} className="mt-2">
+        <div
+          key={section.title}
+          className="mt-2 border border-slate-200 p-2 rounded-xl shadow-md"
+        >
           <h3 className="text-lg font-semibold text-slate-800">
             {section.title}
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-2">
             {section.fields.map((field) => (
-              <div
-                key={field.label}
-                className="rounded-lg border border-slate-200 bg-slate-50 p-2"
-              >
+              <div key={field.label} className="rounded-xl p-2">
                 <p className="text-xs uppercase tracking-wide text-slate-500">
                   {field.label}
                 </p>
 
-                <p className="text-sm font-semibold text-slate-800 wrap-break-word">
+                <p className="mt-1 text-sm font-semibold text-slate-800 wrap-break-word">
                   {field.value || "-"}
                 </p>
               </div>
