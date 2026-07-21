@@ -15,7 +15,6 @@ const Pagination = ({
 }) => {
   // Calculate result range
   const start = totalItems === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
-
   const end = Math.min(currentPage * itemsPerPage, totalItems);
 
   // Go to first page
@@ -54,7 +53,7 @@ const Pagination = ({
   };
 
   return (
-    <div className="mt-2 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="mt-2 rounded-xl border border-slate-200 p-4 shadow-sm">
       <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
         {/* RESULTS INFO */}
         <p className="text-sm text-slate-500">

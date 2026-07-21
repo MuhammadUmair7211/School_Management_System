@@ -12,7 +12,7 @@ const Teachers = () => {
   const { teachers } = useSelector((state) => state.teachers);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const totalTeachers = teachers?.length;
   // Total pages
   const totalPages = Math.ceil(totalTeachers / itemsPerPage);
@@ -44,6 +44,7 @@ const Teachers = () => {
             totalPages={totalPages}
             itemsPerPage={itemsPerPage}
             totalItems={totalTeachers}
+            setItemsPerPage={setItemsPerPage}
           />
         </div>
         {/* Sidebar */}

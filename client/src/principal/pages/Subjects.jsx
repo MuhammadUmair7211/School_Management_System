@@ -9,7 +9,7 @@ import { useState } from "react";
 const Subjects = () => {
   const { subjects } = useSelector((state) => state.subjects);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const totalSubjects = subjects?.length;
 
   // Total pages
@@ -38,6 +38,7 @@ const Subjects = () => {
         totalPages={totalPages}
         itemsPerPage={itemsPerPage}
         totalItems={totalSubjects}
+        setItemsPerPage={setItemsPerPage}
       />
     </div>
   );

@@ -12,7 +12,7 @@ const Students = () => {
   const { students } = useSelector((state) => state.students);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const totalStudents = students?.length;
 
   // Total pages
@@ -49,6 +49,7 @@ const Students = () => {
             totalPages={totalPages}
             itemsPerPage={itemsPerPage}
             totalItems={totalStudents}
+            setItemsPerPage={setItemsPerPage}
           />
         </div>
 
