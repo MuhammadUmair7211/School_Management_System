@@ -9,9 +9,20 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Teachers = () => {
-  const navigate = useNavigate();
-  const [selectedTeacher, setSelectedTeacher] = useState(null);
   const { teachers } = useSelector((state) => state.teachers);
+  const [selectedTeacher, setSelectedTeacher] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalTeachers = teachers?.length;
+  // Total pages
+  const totalPages = Math.ceil(totalTeachers / itemsPerPage);
+  // Calculate starting index
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  // Calculate ending index
+  const endIndex = startIndex + itemsPerPage;
+  // Subjects for current page
+  const currentTeachers = teachers.slice(startIndex, endIndex);
+  const navigate = useNavigate();
   return (
     <div className="flex h-full flex-col overflow-hidden">
       <div className="flex flex-1 flex-col gap-2 overflow-hidden lg:flex-row">
@@ -24,14 +35,15 @@ const Teachers = () => {
           <TeacherStatistics teachers={teachers} />
           <TeacherFilterBar />
           <TeacherTable
-            teachers={teachers}
+            teachers={currentTeachers}
             setSelectedTeacher={setSelectedTeacher}
           />
           <Pagination
-            currentPage={1}
-            totalPages={8}
-            itemsPerPage={10}
-            totalStudents={78}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={totalPages}
+            itemsPerPage={itemsPerPage}
+            totalItems={totalTeachers}
           />
         </div>
         {/* Sidebar */}

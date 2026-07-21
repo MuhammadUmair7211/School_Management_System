@@ -9,8 +9,20 @@ import Pagination from "../components/Pagination";
 import StudentStatistics from "../components/StudentStatistics";
 
 const Students = () => {
-  const [selectedStudent, setSelectedStudent] = useState(null);
   const { students } = useSelector((state) => state.students);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalStudents = students?.length;
+
+  // Total pages
+  const totalPages = Math.ceil(totalStudents / itemsPerPage);
+  // Calculate starting index
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  // Calculate ending index
+  const endIndex = startIndex + itemsPerPage;
+  // Subjects for current page
+  const currentStudents = students.slice(startIndex, endIndex);
   const navigate = useNavigate();
   return (
     <div className="flex h-full flex-col overflow-hidden">
@@ -28,14 +40,15 @@ const Students = () => {
           <StudentFilterBar />
 
           <StudentTable
-            students={students}
+            students={currentStudents}
             setSelectedStudent={setSelectedStudent}
           />
           <Pagination
-            currentPage={1}
-            totalPages={8}
-            itemsPerPage={10}
-            totalStudents={78}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={totalPages}
+            itemsPerPage={itemsPerPage}
+            totalItems={totalStudents}
           />
         </div>
 

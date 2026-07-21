@@ -107,7 +107,7 @@ const AcademicSettings = () => {
       {/* TOP CARDS */}
       {/* ========================================= */}
 
-      <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-2 xl:grid-cols-3">
         {/* Academic Year */}
         <SettingsCard icon={<CalendarDays size={18} />} title="Academic Year">
           <div className="space-y-4">

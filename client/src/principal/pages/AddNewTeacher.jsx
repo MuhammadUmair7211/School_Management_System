@@ -1,12 +1,10 @@
 import Header from "../components/Header";
 import TeacherRegistrationForm from "../components/TeacherRegistrationForm";
-import TitleBar from "../components/TitleBar";
 
 const AddNewTeacher = () => {
   const handleAddNewTeacher = () => {};
   return (
     <div className="flex flex-col min-h-screen">
-      <TitleBar />
       <Header
         heading="Add New Teacher"
         buttonText="Create Teacher"

@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  // ALL SUBJECTS
+
   subjects: [
+    // CLASSES 1-8 | GENERAL SUBJECTS
     {
       _id: 1,
       subjectCode: "MTH101",
@@ -10,152 +13,302 @@ const initialState = {
       totalMarks: 100,
       passingMarks: 40,
       weeklyPeriods: 6,
+      category: "general",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8],
       status: "Active",
     },
+
     {
       _id: 2,
-      subjectCode: "ENG101",
-      subjectName: "English",
-      description: "English language, grammar, reading and writing skills.",
+      subjectCode: "SCI101",
+      subjectName: "Science",
+      description:
+        "Basic scientific concepts and understanding of the natural world.",
       totalMarks: 100,
       passingMarks: 40,
-      weeklyPeriods: 5,
+      weeklyPeriods: 4,
+      category: "general",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8],
       status: "Active",
     },
+
     {
       _id: 3,
+      subjectCode: "COM101",
+      subjectName: "Computer",
+      description:
+        "Introduction to computers and basic information technology.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 2,
+      category: "general",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8],
+      status: "Active",
+    },
+
+    {
+      _id: 4,
+      subjectCode: "SST101",
+      subjectName: "Social Studies",
+      description: "Study of society, culture, history, and geography.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 3,
+      category: "general",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8],
+      status: "Active",
+    },
+
+    {
+      _id: 5,
+      subjectCode: "ISL101",
+      subjectName: "Islamiat",
+      description: "Study of Islamic teachings, values, and principles.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 2,
+      category: "general",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8],
+      status: "Active",
+    },
+
+    {
+      _id: 6,
       subjectCode: "URD101",
       subjectName: "Urdu",
-      description: "Urdu language, literature and grammar.",
+      description: "Urdu language, grammar, literature, and communication.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 4,
+      category: "general",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8],
+      status: "Active",
+    },
+
+    {
+      _id: 7,
+      subjectCode: "ENG101",
+      subjectName: "English",
+      description: "English language, grammar, literature, and communication.",
       totalMarks: 100,
       passingMarks: 40,
       weeklyPeriods: 5,
+      category: "general",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8],
       status: "Active",
     },
-    {
-      _id: 4,
-      subjectCode: "PHY101",
-      subjectName: "Physics",
-      description: "Concepts of mechanics, electricity and modern physics.",
-      totalMarks: 100,
-      passingMarks: 40,
-      weeklyPeriods: 4,
-      status: "Active",
-    },
-    {
-      _id: 5,
-      subjectCode: "CHE101",
-      subjectName: "Chemistry",
-      description: "Study of matter, chemical reactions and laboratory work.",
-      totalMarks: 100,
-      passingMarks: 40,
-      weeklyPeriods: 4,
-      status: "Active",
-    },
-    {
-      _id: 6,
-      subjectCode: "BIO101",
-      subjectName: "Biology",
-      description: "Study of living organisms and life sciences.",
-      totalMarks: 100,
-      passingMarks: 40,
-      weeklyPeriods: 4,
-      status: "Active",
-    },
-    {
-      _id: 7,
-      subjectCode: "CSC101",
-      subjectName: "Computer Science",
-      description: "Computer fundamentals, programming and practical skills.",
-      totalMarks: 100,
-      passingMarks: 40,
-      weeklyPeriods: 4,
-      status: "Active",
-    },
+
     {
       _id: 8,
-      subjectCode: "ISL101",
-      subjectName: "Islamiyat",
-      description: "Islamic teachings, ethics and history.",
+      subjectCode: "ART101",
+      subjectName: "Arts",
+      description: "Basic drawing, creativity, and artistic expression.",
       totalMarks: 100,
       passingMarks: 40,
       weeklyPeriods: 2,
+      category: "arts",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8],
       status: "Active",
     },
+
+    // CLASSES 9-12 | SCIENCE SUBJECTS
+
     {
       _id: 9,
-      subjectCode: "PST101",
-      subjectName: "Pakistan Studies",
-      description: "History, geography and culture of Pakistan.",
+      subjectCode: "PHY101",
+      subjectName: "Physics",
+      description:
+        "Study of matter, energy, motion, forces, and physical phenomena.",
       totalMarks: 100,
       passingMarks: 40,
-      weeklyPeriods: 2,
+      weeklyPeriods: 5,
+      category: "science",
+      classes: [9, 10, 11, 12],
       status: "Active",
     },
+
     {
       _id: 10,
-      subjectCode: "GSC101",
-      subjectName: "General Science",
-      description: "Basic concepts of physical and biological sciences.",
+      subjectCode: "CHE101",
+      subjectName: "Chemistry",
+      description:
+        "Study of matter, elements, compounds, and chemical reactions.",
       totalMarks: 100,
       passingMarks: 40,
-      weeklyPeriods: 4,
+      weeklyPeriods: 5,
+      category: "science",
+      classes: [9, 10, 11, 12],
       status: "Active",
     },
+
     {
       _id: 11,
+      subjectCode: "BIO101",
+      subjectName: "Biology",
+      description: "Study of living organisms and biological systems.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 5,
+      category: "science",
+      classes: [9, 10, 11, 12],
+      status: "Active",
+    },
+
+    {
+      _id: 12,
+      subjectCode: "CSC101",
+      subjectName: "Computer Science",
+      description:
+        "Study of programming, algorithms, computer systems, and information technology.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 5,
+      category: "science",
+      classes: [9, 10, 11, 12],
+      status: "Active",
+    },
+
+    // CLASSES 9-12 | ARTS / HUMANITIES SUBJECTS
+
+    {
+      _id: 13,
       subjectCode: "GEO101",
       subjectName: "Geography",
       description: "Study of the Earth's physical features and environment.",
       totalMarks: 100,
       passingMarks: 40,
       weeklyPeriods: 3,
+      category: "arts",
+      classes: [9, 10, 11, 12],
       status: "Active",
     },
+
     {
-      _id: 12,
+      _id: 14,
+      subjectCode: "ECO101",
+      subjectName: "Economics",
+      description:
+        "Study of economic principles, markets, production, and financial systems.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 4,
+      category: "arts",
+      classes: [9, 10, 11, 12],
+      status: "Active",
+    },
+
+    {
+      _id: 15,
       subjectCode: "HIS101",
       subjectName: "History",
-      description: "World and regional historical events and civilizations.",
+      description: "Study of historical events, civilizations, and societies.",
       totalMarks: 100,
       passingMarks: 40,
       weeklyPeriods: 3,
+      category: "arts",
+      classes: [9, 10, 11, 12],
       status: "Active",
     },
+
     {
-      _id: 13,
-      subjectCode: "ART101",
-      subjectName: "Arts",
-      description: "Drawing, painting and creative arts.",
+      _id: 16,
+      subjectCode: "CIV101",
+      subjectName: "Civics",
+      description: "Study of government, citizenship, and political systems.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 3,
+      category: "arts",
+      classes: [9, 10, 11, 12],
+      status: "Active",
+    },
+
+    // COMMON SUBJECTS | CLASSES 9-12
+
+    {
+      _id: 17,
+      subjectCode: "ENG201",
+      subjectName: "English",
+      description: "English language, literature, grammar, and communication.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 5,
+      category: "general",
+      classes: [9, 10, 11, 12],
+      status: "Active",
+    },
+
+    {
+      _id: 18,
+      subjectCode: "URD201",
+      subjectName: "Urdu",
+      description: "Urdu language, literature, grammar, and poetry.",
+      totalMarks: 100,
+      passingMarks: 40,
+      weeklyPeriods: 4,
+      category: "general",
+      classes: [9, 10, 11, 12],
+      status: "Active",
+    },
+
+    {
+      _id: 19,
+      subjectCode: "ISL201",
+      subjectName: "Islamiat",
+      description:
+        "Study of Islamic teachings, Quran, Hadith, and Islamic principles.",
       totalMarks: 100,
       passingMarks: 40,
       weeklyPeriods: 2,
+      category: "general",
+      classes: [9, 10, 11, 12],
       status: "Active",
     },
+
     {
-      _id: 14,
-      subjectCode: "MUS101",
-      subjectName: "Music",
-      description: "Music theory, vocals and instrumental practice.",
+      _id: 20,
+      subjectCode: "PAK101",
+      subjectName: "Pakistan Studies",
+      description:
+        "Study of Pakistan's history, geography, culture, and development.",
       totalMarks: 100,
       passingMarks: 40,
       weeklyPeriods: 2,
-      status: "Active",
-    },
-    {
-      _id: 15,
-      subjectCode: "PE101",
-      subjectName: "Physical Education",
-      description: "Sports, fitness and physical activities.",
-      totalMarks: 100,
-      passingMarks: 40,
-      weeklyPeriods: 2,
+      category: "general",
+      classes: [9, 10, 11, 12],
       status: "Active",
     },
   ],
+  // SUBJECT CATEGORIES / GROUPS
+  groups: [
+    {
+      id: "general",
+      name: "General",
+      description: "General and compulsory subjects available for students.",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    },
+
+    {
+      id: "science",
+      name: "Science",
+      description:
+        "Science subjects available for secondary and higher secondary classes.",
+      classes: [9, 10, 11, 12],
+    },
+
+    {
+      id: "arts",
+      name: "Arts",
+      description: "Arts and humanities subjects available for students.",
+      classes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    },
+  ],
+
   loading: false,
+
   error: null,
 };
+
 const subjectSlice = createSlice({
   name: "subject",
   initialState,

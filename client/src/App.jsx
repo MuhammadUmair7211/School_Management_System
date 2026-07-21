@@ -29,6 +29,7 @@ import SystemSettings from "./principal/pages/SystemSettings";
 import NotificationSettings from "./principal/pages/NotificationSettings";
 import SecuritySettings from "./principal/pages/SecuritySettings";
 import BackupSettings from "./principal/pages/BackupSettings";
+import EditExistingSubject from "./principal/pages/EditExistingSubject";
 
 const App = () => {
   return (
@@ -56,6 +57,10 @@ const App = () => {
         />
         <Route path="subjects" element={<Subjects />} />
         <Route path="/subjects/add-new-subject" element={<AddNewSubject />} />
+        <Route
+          path="/subjects/edit-existing-subject/:id"
+          element={<EditExistingSubject />}
+        />
         <Route path="/attendance" element={<Attendance />} />
         <Route path="/examinations" element={<Examinations />} />
         <Route path="/fee-management" element={<FeeManagement />} />
