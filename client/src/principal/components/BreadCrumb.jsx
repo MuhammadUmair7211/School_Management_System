@@ -5,7 +5,7 @@ const BreadCrumb = () => {
   const { pathname } = useLocation();
 
   const breadcrumbs = [
-    "Home",
+    "Dashboard",
     ...pathname
       .split("/")
       .filter(Boolean)

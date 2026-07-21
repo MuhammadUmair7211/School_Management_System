@@ -23,6 +23,12 @@ import Activities from "./principal/pages/Activities";
 import AddNewClass from "./principal/pages/AddNewClass";
 import EditExistingClass from "./principal/pages/EditExistingClass";
 import EditExistingTeacher from "./principal/pages/EditExistingTeacher";
+import GeneralSettings from "./principal/pages/GeneralSettings";
+import AcademicSettings from "./principal/pages/AcademicSettings";
+import SystemSettings from "./principal/pages/SystemSettings";
+import NotificationSettings from "./principal/pages/NotificationSettings";
+import SecuritySettings from "./principal/pages/SecuritySettings";
+import BackupSettings from "./principal/pages/BackupSettings";
 
 const App = () => {
   return (
@@ -57,7 +63,17 @@ const App = () => {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/notice-board" element={<NoticeBoard />} />
         <Route path="/messages" element={<Messages />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/settings" element={<Settings />}>
+          <Route index element={<GeneralSettings />} />
+          <Route path="academic-settings" element={<AcademicSettings />} />
+          <Route path="system-settings" element={<SystemSettings />} />
+          <Route
+            path="notification-settings"
+            element={<NotificationSettings />}
+          />
+          <Route path="security-settings" element={<SecuritySettings />} />
+          <Route path="backup-settings" element={<BackupSettings />} />
+        </Route>
         <Route path="/profile" element={<Profile />} />
         <Route path="/view-calendar" element={<Calendar />} />
         <Route path="/activities" element={<Activities />} />
