@@ -125,7 +125,7 @@ const QuickActions = () => {
     },
   ];
   return (
-    <div className="p-4 border border-slate-200 rounded-xl shadow-sm">
+    <div className="p-2 border border-slate-200 rounded-xl shadow-sm">
       <h2 className="font-semibold text-slate-600 mb-2">Quick Actions</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
