@@ -116,7 +116,7 @@ const Dashboard = () => {
             <img
               src="/footer-logo.jpg"
               alt="School Banner"
-              className="w-full h-44 object-cover"
+              className="w-full h-55 object-cover"
             />
           </div>
         </div>

@@ -28,7 +28,7 @@ export default function AttendanceChart() {
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-slate-600">Attendance Overview</h2>
 
-        <select className="max-w-72 w-full border border-slate-300 rounded-xl px-3 py-2">
+        <select className="max-w-72 w-full border border-slate-300 rounded-xl px-3 py-1.5">
           <option>This Month</option>
           <option>Last Month</option>
           <option>This Year</option>
@@ -36,12 +36,12 @@ export default function AttendanceChart() {
       </div>
 
       <div className="flex items-center justify-center gap-4 my-2">
-        <div className="w-8 h-2 block bg-[#2563eb] rounded-full"></div>
+        <div className="w-8 h-1 block bg-[#2563eb] rounded-full"></div>
         <p className="font-semibold text-slate-500">Students</p>
-        <div className="w-8 h-2 block bg-[#16a34a] rounded-full"></div>
+        <div className="w-8 h-1 block bg-[#16a34a] rounded-full"></div>
         <p className="font-semibold text-slate-500">Teachers</p>
       </div>
-      <ResponsiveContainer width="100%" height={320}>
+      <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="day" />
@@ -65,12 +65,12 @@ export default function AttendanceChart() {
         </LineChart>
       </ResponsiveContainer>
 
-      <div className="grid md:grid-cols-2 gap-4 mt-6">
-        <div className="border border-slate-100 rounded-xl p-4">
+      <div className="grid md:grid-cols-2 gap-4 mt-2">
+        <div className="border border-slate-100 rounded-xl p-3">
           <h4 className="text-gray-500">Average Student Attendance</h4>
           <h2 className="text-3xl font-bold text-blue-600">92.4%</h2>
         </div>
-        <div className="border border-slate-100 rounded-xl p-4">
+        <div className="border border-slate-100 rounded-xl p-3">
           <h4 className="text-gray-500">Average Teacher Attendance</h4>
           <h2 className="text-3xl font-bold text-green-600">87.6%</h2>
         </div>

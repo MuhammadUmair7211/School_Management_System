@@ -10,8 +10,17 @@ import ClassProfileRightSideBar from "../components/ClassProfileRightSideBar";
 const Classes = () => {
   const { classes } = useSelector((state) => state.classes);
   const [selectedClass, setSelectedClass] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const totalClasses = classes?.length;
+  const totalPages = Math.ceil(totalClasses / itemsPerPage);
 
+  // Calculate starting index
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  // Calculate ending index
+  const endIndex = startIndex + itemsPerPage;
+  // Subjects for current page
+  const currentClasses = classes.slice(startIndex, endIndex);
   const navigate = useNavigate();
   return (
     <div className="flex h-full flex-col overflow-hidden">
@@ -26,12 +35,17 @@ const Classes = () => {
 
           <ClassStatistics classes={classes} />
           <ClassFilterBar />
-          <ClassesTable classes={classes} setSelectedClass={setSelectedClass} />
+          <ClassesTable
+            classes={currentClasses}
+            setSelectedClass={setSelectedClass}
+          />
           <Pagination
-            currentPage={1}
-            totalPages={8}
-            itemsPerPage={10}
-            totalStudents={totalClasses}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={totalPages}
+            itemsPerPage={itemsPerPage}
+            totalItems={totalClasses}
+            setItemsPerPage={setItemsPerPage}
           />
         </div>
         {/* Sidebar */}
