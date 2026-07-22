@@ -121,9 +121,12 @@ const ClassesTable = ({ classes, setSelectedClass }) => {
                         className="h-10 w-10 rounded-full object-cover"
                       />
 
-                      <span className="text-sm font-medium text-slate-700">
-                        {item.classTeacher}
-                      </span>
+                      <div>
+                        <span className="text-sm font-semibold text-slate-700">
+                          {item.classTeacher}
+                        </span>
+                        <p className="text-sm text-slate-500">{item.email}</p>
+                      </div>
                     </div>
                   </td>
 

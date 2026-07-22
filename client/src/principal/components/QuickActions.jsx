@@ -133,7 +133,7 @@ const QuickActions = () => {
           <Link
             to={action.path}
             key={index}
-            className={`flex flex-col items-center justify-center gap-2 rounded-xl ${action.cardBg} p-2 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer border ${action.borderColor}`}
+            className={`flex flex-col items-center justify-center gap-2 ${action.cardBg} p-2 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer border ${action.borderColor}`}
           >
             <div
               className={`w-12 h-12 rounded-full ${action.iconBg} ${action.iconColor} flex items-center justify-center`}

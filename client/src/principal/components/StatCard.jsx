@@ -6,7 +6,7 @@ const StatCard = ({ statistics }) => {
       {statistics.map((item) => (
         <div
           key={item.title}
-          className={`${item.cardBg} border ${item.borderColor} rounded-2xl p-3 flex items-center gap-2 hover:shadow-lg shadow-sm transition duration-300 cursor-pointer`}
+          className={`${item.cardBg} border ${item.borderColor} p-3 flex items-center gap-2 hover:shadow-lg shadow-sm transition duration-300 cursor-pointer`}
         >
           {/* Icon */}
           <div

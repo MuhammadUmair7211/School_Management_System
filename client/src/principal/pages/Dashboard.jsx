@@ -9,32 +9,17 @@ import RecentActivities from "../components/RecentActivities";
 import TitleBar from "../components/TitleBar";
 const Dashboard = () => {
   const { teachers } = useSelector((state) => state.teachers);
-
   const { students } = useSelector((state) => state.students);
-
-  const { exams } = useSelector((state) => state.exams);
-  console.log(exams);
-
   const { classes } = useSelector((state) => state.classes);
-
   const { fees } = useSelector((state) => state.fees);
-  console.log(fees);
-
-  const { subjects } = useSelector((state) => state.subjects);
-  console.log(subjects);
-
   const { attendances } = useSelector((state) => state.attendances);
-  console.log(attendances);
-
   const presentStudents = attendances?.filter(
     (record) => record.status === "Present",
   ).length;
-
   const attendancePercentage =
     attendances?.length > 0
       ? ((presentStudents / attendances?.length) * 100).toFixed(1)
       : 0;
-
   const totalRevenue = fees?.reduce((sum, fee) => sum + fee.amount, 0);
 
   const statistics = [

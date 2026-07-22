@@ -32,6 +32,7 @@ const initialState = {
 
       academicYear: "2026-2027",
       classTeacher: "Ayesha Ali",
+      email: "ayesha.ali@school.com",
 
       subjectAssignments: [
         { _id: 1, subject: "Mathematics", teacher: "Mrs. Rizwana Malik" },
@@ -92,6 +93,7 @@ const initialState = {
 
       academicYear: "2026-2027",
       classTeacher: "Ahmed Khan",
+      email: "ahmed.khan@school.com",
 
       subjectAssignments: [
         { _id: 1, subject: "Mathematics", teacher: "Ahmed Khan" },
@@ -152,6 +154,7 @@ const initialState = {
 
       academicYear: "2026-2027",
       classTeacher: "Mrs. Rizwana Malik",
+      email: "rizwana.malik@school.com",
 
       subjectAssignments: [
         { _id: 1, subject: "Mathematics", teacher: "Mrs. Rizwana Malik" },
@@ -212,6 +215,7 @@ const initialState = {
 
       academicYear: "2026-2027",
       classTeacher: "Mr. Imran Khan",
+      email: "imran.khan@school.com",
 
       subjectAssignments: [
         { _id: 1, subject: "Mathematics", teacher: "Ahmed Khan" },
@@ -273,6 +277,7 @@ const initialState = {
 
       academicYear: "2026-2027",
       classTeacher: "Usman Iqbal",
+      email: "usman.iqbal@school.com",
 
       subjectAssignments: [
         { _id: 1, subject: "Mathematics", teacher: "Ahmed Khan" },

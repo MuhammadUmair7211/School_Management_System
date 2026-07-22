@@ -6,6 +6,7 @@ import SubjectFilterBar from "../components/SubjectFilterBar";
 import SubjectTable from "../components/SubjectTable";
 import Pagination from "../components/Pagination";
 import { useState } from "react";
+import { Plus } from "lucide-react";
 const Subjects = () => {
   const { subjects } = useSelector((state) => state.subjects);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,6 +28,7 @@ const Subjects = () => {
         heading="Subjects"
         buttonText="Add New Subject"
         details="Manage subjects, categories, classes, and academic details"
+        icon={<Plus size={18} />}
         onClick={() => navigate("/subjects/add-new-subject")}
       />
       <SubjectStatistics subjects={subjects} />

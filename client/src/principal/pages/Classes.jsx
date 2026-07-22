@@ -7,6 +7,7 @@ import ClassesTable from "../components/ClassesTable";
 import Pagination from "../components/Pagination";
 import { useState } from "react";
 import ClassProfileRightSideBar from "../components/ClassProfileRightSideBar";
+import { Plus } from "lucide-react";
 const Classes = () => {
   const { classes } = useSelector((state) => state.classes);
   const [selectedClass, setSelectedClass] = useState(null);
@@ -29,7 +30,8 @@ const Classes = () => {
           <Header
             heading="Classes"
             buttonText="Add New Class"
-            details="Fill in the details to register a new class in the system"
+            details="View and manage classes of your school system"
+            icon={<Plus size={18} />}
             onClick={() => navigate("/classes/add-new-class")}
           />
 

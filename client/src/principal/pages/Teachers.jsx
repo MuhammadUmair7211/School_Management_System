@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import TeacherProfileSideBar from "../components/TeacherProfileSideBar";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Plus } from "lucide-react";
 
 const Teachers = () => {
   const { teachers } = useSelector((state) => state.teachers);
@@ -29,7 +30,9 @@ const Teachers = () => {
         <div className="min-w-0 flex-1 overflow-hidden">
           <Header
             heading="Teachers"
+            details="View and manage teachers of your school system"
             buttonText="Add New Teacher"
+            icon={<Plus size={18} />}
             onClick={() => navigate("/teachers/add-new-teacher")}
           />
           <TeacherStatistics teachers={teachers} />

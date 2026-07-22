@@ -1,6 +1,24 @@
-import { Filter, RotateCcw, Search } from "lucide-react";
+import { RotateCcw, Search } from "lucide-react";
+import { useSelector } from "react-redux";
 
-const StudentFilterBar = () => {
+const StudentFilterBar = ({
+  inputSearch,
+  setInputSearch,
+  classSearch,
+  setClassSearch,
+  sectionSearch,
+  setSectionSearch,
+  setStatusSearch,
+  statusSearch,
+}) => {
+  const { classes } = useSelector((state) => state.classes);
+  const allClasses = classes.map((singleClass) => singleClass.class);
+  const handleReset = () => {
+    setInputSearch("");
+    setClassSearch("all");
+    setSectionSearch("all");
+    setStatusSearch("all");
+  };
   return (
     <div className="mt-2 rounded-xl border border-slate-200 p-2 shadow-sm">
       <div className="flex flex-col gap-4 xl:flex-row xl:items-end">
@@ -18,8 +36,10 @@ const StudentFilterBar = () => {
 
             <input
               type="search"
-              placeholder="Search by name, roll no., admission no. or father name..."
-              className="px-4 py-2 w-full rounded-lg border border-slate-200 pl-10 pr-4 outline-none transition "
+              value={inputSearch}
+              onChange={(e) => setInputSearch(e.target.value)}
+              placeholder="Search by name, roll no, admission no, or father name..."
+              className="p-2 w-full border border-slate-200 pl-10 pr-4 outline-none transition "
             />
           </div>
         </div>
@@ -30,8 +50,19 @@ const StudentFilterBar = () => {
             Class
           </label>
 
-          <select className="px-4 py-2 w-full rounded-lg border border-slate-200 outline-none ">
-            <option>All Classes</option>
+          <select
+            value={classSearch}
+            onChange={(e) => setClassSearch(e.target.value)}
+            className="p-2 w-full border border-slate-200 outline-none cursor-pointer"
+          >
+            <option value="all">All Classes</option>
+            {allClasses.map((singleClass) => {
+              return (
+                <option key={singleClass} value={singleClass}>
+                  {singleClass}
+                </option>
+              );
+            })}
           </select>
         </div>
 
@@ -41,8 +72,15 @@ const StudentFilterBar = () => {
             Section
           </label>
 
-          <select className="px-4 py-2 w-full rounded-lg border border-slate-200 outline-none ">
-            <option>All Sections</option>
+          <select
+            value={sectionSearch}
+            onChange={(e) => setSectionSearch(e.target.value)}
+            className="p-2 w-full border border-slate-200 outline-none cursor-pointer"
+          >
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
           </select>
         </div>
 
@@ -52,23 +90,24 @@ const StudentFilterBar = () => {
             Status
           </label>
 
-          <select className="w-full rounded-lg border border-slate-200 px-4 py-2 outline-none ">
-            <option>All Status</option>
+          <select
+            value={statusSearch}
+            onChange={(e) => setStatusSearch(e.target.value)}
+            className="w-full border border-slate-200 px-4 py-2 outline-none cursor-pointer"
+          >
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">In Active</option>
           </select>
         </div>
 
-        {/* Buttons */}
-        <div className="flex gap-3">
-          <button className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700">
-            <Filter size={18} />
-            Filter
-          </button>
-
-          <button className="flex h-11 items-center gap-2 rounded-lg border border-slate-300 bg-white px-5 text-slate-700 transition hover:bg-slate-100">
-            <RotateCcw size={18} />
-            Reset
-          </button>
-        </div>
+        <button
+          onClick={handleReset}
+          className="flex items-center gap-2 border border-slate-300 bg-white px-5 py-2 text-slate-700 transition hover:bg-slate-100 cursor-pointer duration-300"
+        >
+          <RotateCcw size={18} />
+          Reset
+        </button>
       </div>
     </div>
   );
