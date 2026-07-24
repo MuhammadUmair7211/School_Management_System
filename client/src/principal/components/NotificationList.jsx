@@ -175,7 +175,7 @@ const NotificationList = ({
               {/* Unread Indicator */}
 
               {isUnread && (
-                <span className="absolute left-0 top-0 h-full w-0.5 rounded-full bg-indigo-500" />
+                <span className="absolute left-0 top-0 h-full w-0.5 rounded-full bg-blue-600" />
               )}
 
               {/* Checkbox */}
@@ -213,7 +213,7 @@ const NotificationList = ({
                   </span>
 
                   {isUnread && (
-                    <span className="hidden h-2 w-2 shrink-0 rounded-full bg-indigo-500 sm:block" />
+                    <span className="hidden h-2 w-2 shrink-0 rounded-full bg-blue-600 sm:block" />
                   )}
                 </div>
 
