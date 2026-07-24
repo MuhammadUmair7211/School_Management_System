@@ -130,7 +130,7 @@ const Notifications = () => {
               className={({ isActive }) =>
                 `group flex items-center gap-3 border-b-2 px-4 py-3 text-sm font-medium transition-all ${
                   isActive
-                    ? "border-indigo-600 text-indigo-600"
+                    ? "border-blue-600 text-blue-600"
                     : "border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700"
                 }`
               }

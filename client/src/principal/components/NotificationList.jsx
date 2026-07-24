@@ -164,7 +164,7 @@ const NotificationList = ({
           return (
             <div
               key={notification._id}
-              className={`group relative flex items-center gap-4 p-5 transition-all duration-200 ${
+              className={`group relative flex items-center gap-4 p-4 cursor-pointer transition-all duration-200 ${
                 isSelected
                   ? "bg-blue-100"
                   : isUnread

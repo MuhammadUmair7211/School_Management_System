@@ -10,7 +10,7 @@ const SideBar = () => {
     <aside className="px-2 w-20 md:w-72 min-h-screen bg-slate-900 flex flex-col items-center md:items-start text-white border-r border-slate-800">
       {/* Logo */}
       <div className="flex items-center justify-center md:justify-start gap-3 p-4 border-b border-slate-800">
-        <div className="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center">
+        <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
           <GraduationCap size={24} />
         </div>
 
