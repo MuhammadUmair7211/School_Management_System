@@ -30,6 +30,10 @@ import NotificationSettings from "./principal/pages/NotificationSettings";
 import SecuritySettings from "./principal/pages/SecuritySettings";
 import BackupSettings from "./principal/pages/BackupSettings";
 import EditExistingSubject from "./principal/pages/EditExistingSubject";
+import AddNewNotification from "./principal/pages/AddNewNotification";
+import AllNotifications from "./principal/pages/AllNotifications";
+import UnreadNotifications from "./principal/pages/UnreadNotifications";
+import ImportantNotifications from "./principal/pages/ImportantNotifications";
 
 const App = () => {
   return (
@@ -65,7 +69,22 @@ const App = () => {
         <Route path="/examinations" element={<Examinations />} />
         <Route path="/fee-management" element={<FeeManagement />} />
         <Route path="/reports" element={<Reports />} />
-        <Route path="/notifications" element={<Notifications />} />
+        <Route path="notifications" element={<Notifications />}>
+          <Route index element={<AllNotifications />} />
+          <Route
+            path="/notifications/unread"
+            element={<UnreadNotifications />}
+          />
+          <Route
+            path="/notifications/important"
+            element={<ImportantNotifications />}
+          />
+        </Route>
+        <Route
+          path="/notifications/add-new-notification"
+          element={<AddNewNotification />}
+        />
+
         <Route path="/notice-board" element={<NoticeBoard />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/settings" element={<Settings />}>

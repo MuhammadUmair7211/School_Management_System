@@ -37,7 +37,7 @@ export default function AddNewSubject() {
   };
 
   return (
-    <div className=" font-sans">
+    <div className="font-sans">
       <Header
         heading="Add New Subject"
         details="Fill in the details to add a new subject to the system"

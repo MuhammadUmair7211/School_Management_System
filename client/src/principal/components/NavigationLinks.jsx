@@ -9,7 +9,6 @@ import {
   Wallet,
   BarChart3,
   Bell,
-  MessageSquare,
   Settings,
   Calendar,
 } from "lucide-react";
@@ -78,11 +77,6 @@ const navigationGroups = [
         icon: <Calendar size={18} />,
         name: "Calendar",
         path: "/view-calendar",
-      },
-      {
-        icon: <MessageSquare size={18} />,
-        name: "Messages",
-        path: "/messages",
       },
     ],
   },
