@@ -146,14 +146,14 @@ const TeacherTable = ({ teachers, setSelectedTeacher }) => {
                   onClick={() => setSelectedTeacher(teacher)}
                 >
                   {/* Serial Number */}
-                  <td className="p-2">
+                  <td className="p-2 text-sm font-medium text-gray-600 whitespace-nowrap">
                     <span className="text-sm font-semibold text-slate-700">
                       {index + 1}
                     </span>
                   </td>
 
                   {/* Teacher */}
-                  <td className="p-2">
+                  <td className="p-2 text-sm font-medium text-gray-600 whitespace-nowrap">
                     <div className="flex items-center gap-3">
                       <img
                         src={
@@ -178,7 +178,7 @@ const TeacherTable = ({ teachers, setSelectedTeacher }) => {
                   </td>
 
                   {/* Department */}
-                  <td className="p-2">
+                  <td className="p-2 text-sm font-medium text-gray-600 whitespace-nowrap">
                     <div className="flex items-center gap-3">
                       {departmentIcons[teacher.department] ||
                         departmentIcons.Default}
@@ -189,7 +189,7 @@ const TeacherTable = ({ teachers, setSelectedTeacher }) => {
                     </div>
                   </td>
                   {/* Subject */}
-                  <td className="p-2">
+                  <td className="p-2 text-sm font-medium text-gray-600 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-slate-700">
                         {teacher.subject}
@@ -198,7 +198,7 @@ const TeacherTable = ({ teachers, setSelectedTeacher }) => {
                   </td>
 
                   {/* Phone / Email */}
-                  <td className="p-2">
+                  <td className="p-2 text-sm font-medium text-gray-600 whitespace-nowrap">
                     <div>
                       <p className="text-sm text-slate-700">{teacher.phone}</p>
 
@@ -207,14 +207,14 @@ const TeacherTable = ({ teachers, setSelectedTeacher }) => {
                   </td>
 
                   {/* Experience */}
-                  <td className="p-2">
+                  <td className="p-2 text-sm font-medium text-gray-600 whitespace-nowrap">
                     <span className="text-sm font-medium text-slate-700">
                       {teacher.experience}
                     </span>
                   </td>
 
                   {/* Status */}
-                  <td className="p-2">
+                  <td className="p-2 text-sm font-medium text-gray-600 whitespace-nowrap">
                     <span
                       className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${
                         teacher.status === "Active"
@@ -227,7 +227,10 @@ const TeacherTable = ({ teachers, setSelectedTeacher }) => {
                   </td>
 
                   {/* Actions */}
-                  <td onClick={(e) => e.stopPropagation()} className="p-2">
+                  <td
+                    onClick={(e) => e.stopPropagation()}
+                    className="p-2 text-sm font-medium text-gray-600 whitespace-nowrap"
+                  >
                     <div className="flex items-center justify-center gap-2">
                       <button
                         onClick={() =>

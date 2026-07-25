@@ -7,9 +7,9 @@ const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { profile } = useSelector((state) => state.principal);
   return (
-    <aside className="px-2 w-20 md:w-72 min-h-screen bg-slate-900 flex flex-col items-center md:items-start text-white border-r border-slate-800">
+    <aside className="w-20 md:w-72 min-h-screen bg-slate-900 flex flex-col items-center md:items-start text-white border-r border-slate-800">
       {/* Logo */}
-      <div className="flex items-center justify-center md:justify-start gap-3 p-4 border-b border-slate-800">
+      <div className="flex items-center justify-center md:justify-start gap-3 p-4 border-b border-slate-800 w-full">
         <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
           <GraduationCap size={24} />
         </div>
@@ -21,7 +21,7 @@ const SideBar = () => {
       </div>
 
       {/* navigation links */}
-      <section className="flex-1 p-4">
+      <section className="flex-1 w-full p-4">
         <NavigationLinks />
       </section>
 

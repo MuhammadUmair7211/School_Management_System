@@ -34,6 +34,11 @@ import AddNewNotification from "./principal/pages/AddNewNotification";
 import AllNotifications from "./principal/pages/AllNotifications";
 import UnreadNotifications from "./principal/pages/UnreadNotifications";
 import ImportantNotifications from "./principal/pages/ImportantNotifications";
+import AddNewExamination from "./principal/pages/AddNewExamination";
+import GenerateReport from "./principal/pages/GenerateReport";
+import Results from "./principal/pages/Results";
+import Marks from "./principal/pages/Marks";
+import UpcomingExaminations from "./principal/pages/UpcomingExaminations";
 
 const App = () => {
   return (
@@ -66,9 +71,18 @@ const App = () => {
           element={<EditExistingSubject />}
         />
         <Route path="/attendance" element={<Attendance />} />
-        <Route path="/examinations" element={<Examinations />} />
+        <Route path="examinations" element={<Examinations />} />
+        <Route
+          path="/examinations/add-new-examination"
+          element={<AddNewExamination />}
+        />
+        <Route
+          path="/examinations/upcoming-examinations"
+          element={<UpcomingExaminations />}
+        />
         <Route path="/fee-management" element={<FeeManagement />} />
-        <Route path="/reports" element={<Reports />} />
+        <Route path="reports" element={<Reports />} />
+        <Route path="/reports/generate-report" element={<GenerateReport />} />
         <Route path="notifications" element={<Notifications />}>
           <Route index element={<AllNotifications />} />
           <Route
@@ -101,6 +115,8 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/view-calendar" element={<Calendar />} />
         <Route path="/activities" element={<Activities />} />
+        <Route path="/results" element={<Results />} />
+        <Route path="/Marks" element={<Marks />} />
       </Route>
     </Routes>
   );
