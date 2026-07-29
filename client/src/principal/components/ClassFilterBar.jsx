@@ -1,4 +1,4 @@
-import { Filter, RefreshCw, Search } from "lucide-react";
+import { RefreshCw, Search } from "lucide-react";
 
 const ClassFilterBar = () => {
   return (
@@ -64,12 +64,6 @@ const ClassFilterBar = () => {
             <option>Inactive</option>
           </select>
         </div>
-
-        {/* Filter Button */}
-        <button className="flex h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 text-sm font-medium text-slate-700 transition-all duration-300 hover:bg-slate-50 hover:shadow">
-          <Filter size={18} />
-          Filter
-        </button>
 
         {/* Refresh */}
         <button className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-all duration-300 hover:rotate-180 hover:bg-slate-50">

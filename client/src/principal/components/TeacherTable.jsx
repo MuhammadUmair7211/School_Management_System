@@ -137,8 +137,6 @@ const TeacherTable = ({ teachers, setSelectedTeacher }) => {
 
           <tbody className="divide-y divide-slate-100 bg-white">
             {teachers.map((teacher, index) => {
-              console.log(teacher.department);
-
               return (
                 <tr
                   key={teacher._id}

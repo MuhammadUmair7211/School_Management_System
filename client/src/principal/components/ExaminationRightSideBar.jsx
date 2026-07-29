@@ -4,10 +4,14 @@ import {
   ChevronRight,
   FileText,
 } from "lucide-react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function ExaminationRightSideBar() {
   const navigate = useNavigate();
+  const { exams } = useSelector((state) => state.exams);
+  const upcomingExams = exams.filter((exam) => exam?.status === "upcoming");
+
   return (
     <div className="space-y-2 rounded-xl font-sans text-slate-800">
       {/* 1. EXAMINATION CALENDAR CARD */}
@@ -134,56 +138,52 @@ export default function ExaminationRightSideBar() {
         </div>
 
         <div className="space-y-3">
-          {/* Item 1 */}
-          <div className="flex items-center gap-3">
-            <div className="flex flex-col items-center justify-center w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl shrink-0">
-              <span className="text-base font-bold leading-tight">05</span>
-              <span className="text-[10px] font-semibold uppercase">AUG</span>
-            </div>
-            <div>
-              <h3 className="text-xs font-bold text-slate-800">
-                Quarterly Examination 2026
-              </h3>
-              <p className="text-[11px] text-slate-500 mt-0.5">Class 7 - B</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">
-                05 Aug 2026 - 10 Aug 2026
-              </p>
-            </div>
-          </div>
+          {upcomingExams
+            ?.slice(upcomingExams?.length - 3, upcomingExams?.length)
+            .map((examination) => {
+              return (
+                <div className="flex items-center gap-3">
+                  <div className="flex flex-col items-center justify-center w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl shrink-0">
+                    <span className="text-base font-bold leading-tight">
+                      {new Date(examination.startDate).getDate()}
+                    </span>
 
-          {/* Item 2 */}
-          <div className="flex items-center gap-3">
-            <div className="flex flex-col items-center justify-center w-14 h-14 bg-emerald-50 text-emerald-600 rounded-xl shrink-0">
-              <span className="text-base font-bold leading-tight">01</span>
-              <span className="text-[10px] font-semibold uppercase">SEP</span>
-            </div>
-            <div>
-              <h3 className="text-xs font-bold text-slate-800">
-                Half Yearly Examination 2026
-              </h3>
-              <p className="text-[11px] text-slate-500 mt-0.5">Class 9 - A</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">
-                01 Sep 2026 - 10 Sep 2026
-              </p>
-            </div>
-          </div>
-
-          {/* Item 3 */}
-          <div className="flex items-center gap-3">
-            <div className="flex flex-col items-center justify-center w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl shrink-0">
-              <span className="text-base font-bold leading-tight">05</span>
-              <span className="text-[10px] font-semibold uppercase">DEC</span>
-            </div>
-            <div>
-              <h3 className="text-xs font-bold text-slate-800">
-                Final Term Examination 2026
-              </h3>
-              <p className="text-[11px] text-slate-500 mt-0.5">Class 10 - A</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">
-                05 Dec 2026 - 20 Dec 2026
-              </p>
-            </div>
-          </div>
+                    <span className="text-[10px] font-semibold uppercase">
+                      {new Date(examination.startDate).toLocaleString("en-US", {
+                        month: "short",
+                      })}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-slate-800">
+                      {examination.examinationName} {examination.academicYear}
+                    </h3>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      Class {examination.class} - {examination.section}
+                    </p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">
+                      {new Date(examination.startDate).toLocaleDateString(
+                        "en-US",
+                        {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        },
+                      )}
+                      {" - "}
+                      {new Date(examination.endDate).toLocaleDateString(
+                        "en-US",
+                        {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        },
+                      )}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
 

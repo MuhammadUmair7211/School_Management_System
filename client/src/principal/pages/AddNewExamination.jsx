@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
+import AddNewExamForm from "../components/AddNewExamForm";
 
 const AddNewExamination = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const AddNewExamination = () => {
         icon={<ArrowLeft size={18} />}
         onClick={() => navigate("/examinations")}
       />
+      <AddNewExamForm />
     </div>
   );
 };

@@ -1,45 +1,52 @@
 import { FileText, Calendar, ClipboardCheck, Users } from "lucide-react";
 
-const statsData = [
-  {
-    id: 1,
-    title: "Total Examinations",
-    value: "12",
-    subtitle: "This Academic Year",
-    icon: FileText,
-    iconBg: "bg-indigo-100",
-    iconColor: "text-indigo-600",
-  },
-  {
-    id: 2,
-    title: "Ongoing Examinations",
-    value: "3",
-    subtitle: "Currently Active",
-    icon: Calendar,
-    iconBg: "bg-emerald-100",
-    iconColor: "text-emerald-500",
-  },
-  {
-    id: 3,
-    title: "Completed Examinations",
-    value: "8",
-    subtitle: "This Academic Year",
-    icon: ClipboardCheck,
-    iconBg: "bg-orange-100",
-    iconColor: "text-orange-500",
-  },
-  {
-    id: 4,
-    title: "Average Pass Percentage",
-    value: "78.4%",
-    subtitle: "This Academic Year",
-    icon: Users,
-    iconBg: "bg-blue-100",
-    iconColor: "text-blue-600",
-  },
-];
+export default function ExaminationStatistics({ exams }) {
+  const totalExams = exams?.length;
+  const ongoingExaminations = exams?.filter(
+    (exam) => exam?.status === "ongoing",
+  ).length;
+  const completedExaminations = exams?.filter(
+    (exam) => exam?.status === "completed",
+  ).length;
 
-export default function ExaminationStatistics() {
+  const statsData = [
+    {
+      id: 1,
+      title: "Total Examinations",
+      value: totalExams,
+      subtitle: "This Academic Year",
+      icon: FileText,
+      iconBg: "bg-indigo-100",
+      iconColor: "text-indigo-600",
+    },
+    {
+      id: 2,
+      title: "Ongoing Examinations",
+      value: ongoingExaminations,
+      subtitle: "Currently Active",
+      icon: Calendar,
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-500",
+    },
+    {
+      id: 3,
+      title: "Completed Examinations",
+      value: completedExaminations,
+      subtitle: "This Academic Year",
+      icon: ClipboardCheck,
+      iconBg: "bg-orange-100",
+      iconColor: "text-orange-500",
+    },
+    {
+      id: 4,
+      title: "Average Pass Percentage",
+      value: "78.4%",
+      subtitle: "This Academic Year",
+      icon: Users,
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
+    },
+  ];
   return (
     <div className="mt-2">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">

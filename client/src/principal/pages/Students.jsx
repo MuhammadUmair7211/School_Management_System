@@ -19,7 +19,6 @@ const Students = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const totalStudents = students?.length;
 
   // search functionality
   const filteredStudents = students.filter((student) => {
@@ -54,6 +53,7 @@ const Students = () => {
     return matchesSearch && matchesClass && matchesSection && matchesStatus;
   });
 
+  const totalStudents = filteredStudents?.length;
   // Total pages
   const totalPages = Math.ceil(totalStudents / itemsPerPage);
   // Calculate starting index

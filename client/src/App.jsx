@@ -39,6 +39,7 @@ import GenerateReport from "./principal/pages/GenerateReport";
 import Results from "./principal/pages/Results";
 import Marks from "./principal/pages/Marks";
 import UpcomingExaminations from "./principal/pages/UpcomingExaminations";
+import EditExistingExamination from "./principal/pages/EditExistingExamination";
 
 const App = () => {
   return (
@@ -79,6 +80,10 @@ const App = () => {
         <Route
           path="/examinations/upcoming-examinations"
           element={<UpcomingExaminations />}
+        />
+        <Route
+          path="/examinations/edit-existing-examination/:id"
+          element={<EditExistingExamination />}
         />
         <Route path="/fee-management" element={<FeeManagement />} />
         <Route path="reports" element={<Reports />} />
