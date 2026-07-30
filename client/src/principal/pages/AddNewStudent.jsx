@@ -15,7 +15,7 @@ const AddNewStudent = () => {
         buttonText="Back to Students"
         details="Fill in the details to register a new student in the system"
         onClick={() => navigate("/students")}
-        icon={<ArrowLeft size={18} />}
+        icon={<ArrowLeft className="svg" size={18} />}
       />
       <div className="hidden lg:block">
         <TimeLine currentStep={currentStep} />

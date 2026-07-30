@@ -72,7 +72,7 @@ export default function AddNewClass() {
         details="Fill in the details to register a new class in the system"
         buttonText="Back to Classes"
         onClick={() => navigate("/classes")}
-        icon={<ArrowLeft size={18} />}
+        icon={<ArrowLeft className="svg" size={18} />}
       />
       {/* Main Grid Container */}
       <div className="mt-2 grid grid-cols-1 lg:grid-cols-3 gap-2">

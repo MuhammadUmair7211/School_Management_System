@@ -10,8 +10,8 @@ const AddNewExamination = () => {
       <Header
         heading="Add New Examination"
         details="Fill in the details to add new examination to the system"
-        buttonText="Back to Examinations"
-        icon={<ArrowLeft size={18} />}
+        buttonText="Back to Exams"
+        icon={<ArrowLeft className="svg" size={18} />}
         onClick={() => navigate("/examinations")}
       />
       <AddNewExamForm />

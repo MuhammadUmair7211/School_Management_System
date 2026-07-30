@@ -113,7 +113,7 @@ const Notifications = () => {
         heading="Notifications"
         details="Create, view and manage your school notifications"
         buttonText="Create Notification"
-        icon={<Plus size={18} />}
+        icon={<Plus className="svg" size={18} />}
         onClick={() => navigate("/notifications/add-new-notification")}
       />
 

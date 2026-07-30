@@ -31,7 +31,7 @@ const Classes = () => {
             heading="Classes"
             buttonText="Add New Class"
             details="View and manage classes of your school system"
-            icon={<Plus size={18} />}
+            icon={<Plus className="svg" size={18} />}
             onClick={() => navigate("/classes/add-new-class")}
           />
 

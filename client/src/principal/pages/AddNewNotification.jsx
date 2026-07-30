@@ -70,7 +70,7 @@ const AddNewNotification = () => {
         heading="Add New Notification"
         details="Create and send an announcement to your school community."
         buttonText="Back to Notifications"
-        icon={<ArrowLeft size={18} />}
+        icon={<ArrowLeft className="svg" size={18} />}
         onClick={() => navigate("/notifications")}
       />
 

@@ -3,17 +3,15 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const TitleBar = () => {
-  const { notifications = [] } = useSelector((state) => state.notifications);
-
-  const { messages = [] } = useSelector((state) => state.messages);
-
-  const filteredNotifications = notifications.filter(
+  const { notifications } = useSelector((state) => state.notifications);
+  const { messages } = useSelector((state) => state.messages);
+  const filteredNotifications = notifications?.filter(
     (notification) =>
       notification.status === "unread" &&
       notification.receiverRole === "principal",
   );
 
-  const filteredMessages = messages.filter(
+  const filteredMessages = messages?.filter(
     (message) => !message.isRead && message.receiverRole === "principal",
   );
 
@@ -28,7 +26,10 @@ const TitleBar = () => {
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <h1 className="truncate text-lg font-bold tracking-tight text-slate-800 md:text-2xl">
-              Welcome back, Dr. John
+              <span style={{ fontFamily: "'Great Vibes', cursive" }}>
+                Welcome back
+              </span>
+              , Dr. John
             </h1>
 
             <Sparkles
@@ -55,11 +56,6 @@ const TitleBar = () => {
               placeholder="Search students, teachers, classes..."
               className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-11 pr-20 text-sm font-medium text-slate-700 outline-none transition-all duration-200 placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
             />
-
-            {/* Keyboard Shortcut */}
-            <span className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-md border border-slate-200 bg-white px-2 py-1 text-[10px] font-semibold text-slate-400 shadow-sm xl:block">
-              Ctrl K
-            </span>
           </div>
         </div>
 

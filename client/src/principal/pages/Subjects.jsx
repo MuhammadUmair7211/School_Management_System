@@ -28,7 +28,7 @@ const Subjects = () => {
         heading="Subjects"
         buttonText="Add New Subject"
         details="Manage subjects, categories, classes, and academic details"
-        icon={<Plus size={18} />}
+        icon={<Plus className="svg" size={18} />}
         onClick={() => navigate("/subjects/add-new-subject")}
       />
       <SubjectStatistics subjects={subjects} />

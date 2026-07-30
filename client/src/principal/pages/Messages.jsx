@@ -11,7 +11,7 @@ const Messages = () => {
         heading="Messages"
         details="Communicate with teachers and school staff"
         buttonText="New Message"
-        icon={<Pen size={18} />}
+        icon={<Pen className="svg" size={18} />}
         onClick={() => navigate("/messages")}
       />
       <ChatApplication />

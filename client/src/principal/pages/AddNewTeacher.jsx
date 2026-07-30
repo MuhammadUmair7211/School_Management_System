@@ -12,7 +12,7 @@ const AddNewTeacher = () => {
         buttonText="Back to Teachers"
         details="Fill in the details below to register a new teacher in the system"
         onClick={() => navigate("/teachers")}
-        icon={<ArrowLeft size={18} />}
+        icon={<ArrowLeft className="svg" size={18} />}
       />
       <div className="flex-1 mt-2 overflow-y-auto">
         <TeacherRegistrationForm />

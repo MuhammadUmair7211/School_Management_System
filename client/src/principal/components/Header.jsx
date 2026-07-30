@@ -1,3 +1,4 @@
+import AddButton from "./AddButton";
 import BreadCrumb from "./BreadCrumb";
 
 const Header = ({ heading, buttonText, onClick, details, icon }) => {
@@ -12,13 +13,12 @@ const Header = ({ heading, buttonText, onClick, details, icon }) => {
 
       {/* Right */}
       {buttonText && (
-        <button
+        <AddButton
           onClick={onClick}
+          buttonText={buttonText}
+          icon={icon}
           className="inline-flex items-center justify-center gap-2 bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-blue-700 hover:shadow-lg active:scale-95 duration-300 cursor-pointer"
-        >
-          {icon}
-          {buttonText}
-        </button>
+        />
       )}
     </div>
   );

@@ -73,7 +73,7 @@ const Students = () => {
             details="Manage, view and edit students in your school"
             buttonText="Add Student"
             onClick={() => navigate("/students/add-new-student")}
-            icon={<Plus size={18} />}
+            icon={<Plus className="svg" size={18} />}
           />
 
           <StudentStatistics students={students} />

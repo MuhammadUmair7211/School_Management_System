@@ -42,7 +42,7 @@ export default function AddNewSubject() {
         heading="Add New Subject"
         details="Fill in the details to add a new subject to the system"
         buttonText="Back to Subjects"
-        icon={<ArrowLeft size={18} />}
+        icon={<ArrowLeft className="svg" size={18} />}
         onClick={() => navigate("/subjects")}
       />
 

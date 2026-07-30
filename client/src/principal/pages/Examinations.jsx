@@ -72,8 +72,8 @@ const Examinations = () => {
       <Header
         heading="Examinations"
         details="View, manage the examinations of your school"
-        buttonText="Add New Examination"
-        icon={<Plus size={18} />}
+        buttonText="Add New Exam"
+        icon={<Plus className="svg" size={18} />}
         onClick={() => navigate("/examinations/add-new-examination")}
       />
 

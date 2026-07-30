@@ -32,7 +32,7 @@ const Teachers = () => {
             heading="Teachers"
             details="View and manage teachers of your school system"
             buttonText="Add New Teacher"
-            icon={<Plus size={18} />}
+            icon={<Plus className="svg" size={18} />}
             onClick={() => navigate("/teachers/add-new-teacher")}
           />
           <TeacherStatistics teachers={teachers} />
