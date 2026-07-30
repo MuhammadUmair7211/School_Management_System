@@ -71,7 +71,7 @@ export default function ExaminationsTable({
 
                 return (
                   <tr
-                    key={row.id || index}
+                    key={row._id || index}
                     className={`${row.status === "completed" ? "bg-green-200 line-through " : row.status === "ongoing" ? "bg-blue-300" : row.status === "cancelled" ? "bg-red-200 line-through" : row.status === "postponed" ? "bg-amber-200 line-through" : row.status === "rescheduled" ? "bg-purple-200 line-through" : "hover:bg-slate-100"} cursor-pointer border border-slate-100`}
                   >
                     {/* Examination Name with Icon */}

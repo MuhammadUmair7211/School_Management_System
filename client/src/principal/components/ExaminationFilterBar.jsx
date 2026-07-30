@@ -15,7 +15,9 @@ export default function ExaminationFilterBar({
   setStatusSearch,
 }) {
   const { classes } = useSelector((state) => state.classes);
+
   const terms = [...new Set(exams.map((exam) => exam.term))].sort();
+
   const examTypes = [
     ...new Set(exams.map((exam) => exam.examinationType)),
   ].sort();
@@ -23,106 +25,164 @@ export default function ExaminationFilterBar({
   const classOptions = classes.map((option) => option.class);
 
   const handleReset = () => {
-    setClassSearch("all");
+    setClassSearch("");
     setInputSearch("");
-    setTermSearch("all");
-    setTypeSearch("all");
-    setStatusSearch("all");
+    setTermSearch("");
+    setTypeSearch("");
+    setStatusSearch("");
   };
+
   return (
-    <div className="mt-2">
-      <div className="flex items-center flex-wrap gap-2">
-        {/* Search Input (Left Side) */}
-        <div className="relative flex-1">
-          <input
-            type="text"
-            value={inputSearch}
-            onChange={(e) => setInputSearch(e.target.value)}
-            placeholder="Search examination..."
-            className="w-full border border-slate-200 text-gray-800 text-sm font-semibold p-3 cursor-pointer outline-none"
-          />
-          <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none hidden lg:block" />
+    <div className="mt-2 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      {/* Filter Header */}
+      <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h3 className="text-sm font-semibold text-slate-800">
+            Filter Examinations
+          </h3>
+          <p className="text-xs text-slate-500">
+            Search and filter examinations by class, term, type, or status.
+          </p>
         </div>
 
-        {/* Dropdown 1: All Classes */}
-        <div className="relative w-full md:w-44">
+        {/* Reset Button */}
+        <button
+          type="button"
+          onClick={handleReset}
+          className="mt-2 flex w-fit items-center justify-center gap-2 border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-800 sm:mt-0"
+        >
+          <RefreshCw size={16} />
+          Reset Filters
+        </button>
+      </div>
+
+      {/* Filters */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {/* Search */}
+        <div className="lg:col-span-1">
+          <label
+            htmlFor="examination-search"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
+            Search Examination
+          </label>
+
+          <div className="relative">
+            <input
+              id="examination-search"
+              type="text"
+              value={inputSearch}
+              onChange={(e) => setInputSearch(e.target.value)}
+              placeholder="Search examination..."
+              className="w-full border border-slate-200 bg-white px-3 py-2.5 pr-10 text-sm text-slate-700 outline-none transition-all placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+            />
+
+            <Search
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+              size={17}
+            />
+          </div>
+        </div>
+
+        {/* Class */}
+        <div>
+          <label
+            htmlFor="class-filter"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
+            Class
+          </label>
+
           <select
+            id="class-filter"
             value={classSearch}
             onChange={(e) => setClassSearch(e.target.value)}
-            className="w-full border border-slate-200 text-gray-800 text-sm font-semibold p-3 cursor-pointer outline-none"
+            className="w-full border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
           >
             <option value="">All Classes</option>
-            {classOptions.map((option) => {
-              return (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              );
-            })}
+
+            {classOptions.map((option) => (
+              <option key={option} value={option}>
+                Class {option}
+              </option>
+            ))}
           </select>
         </div>
 
-        {/* Dropdown 2: All Terms */}
-        <div className="relative w-full md:w-44">
+        {/* Term */}
+        <div>
+          <label
+            htmlFor="term-filter"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
+            Academic Term
+          </label>
+
           <select
+            id="term-filter"
             value={termSearch}
             onChange={(e) => setTermSearch(e.target.value)}
-            className="w-full border border-slate-200 text-gray-800 text-sm font-semibold p-3 cursor-pointer outline-none"
+            className="w-full border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
           >
             <option value="">All Terms</option>
-            {terms.map((term) => {
-              return (
-                <option key={term} value={term}>
-                  {term}
-                </option>
-              );
-            })}
+
+            {terms.map((term) => (
+              <option key={term} value={term}>
+                {term}
+              </option>
+            ))}
           </select>
         </div>
 
-        {/* Dropdown 3: All Types */}
-        <div className="relative w-full md:w-44">
+        {/* Examination Type */}
+        <div>
+          <label
+            htmlFor="type-filter"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
+            Examination Type
+          </label>
+
           <select
+            id="type-filter"
             value={typeSearch}
             onChange={(e) => setTypeSearch(e.target.value)}
-            className="w-full border border-slate-200 text-gray-800 text-sm font-semibold p-3 cursor-pointer outline-none"
+            className="w-full border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
           >
             <option value="">All Types</option>
-            {examTypes.map((type) => {
-              return (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              );
-            })}
+
+            {examTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
           </select>
         </div>
 
-        {/* Dropdown 4: All Status */}
-        <div className="relative w-full md:w-44">
+        {/* Status */}
+        <div>
+          <label
+            htmlFor="status-filter"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
+            Status
+          </label>
+
           <select
+            id="status-filter"
             value={statusSearch}
             onChange={(e) => setStatusSearch(e.target.value)}
-            className="w-full border border-slate-200 text-gray-800 text-sm font-semibold p-3 cursor-pointer outline-none"
+            className="w-full border border-slate-200 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
           >
             <option value="">All Status</option>
-            <option value="upcoming">upcoming</option>
-            <option value="ongoing">ongoing</option>
-            <option value="completed">completed</option>
-            <option value="cancelled">cancelled</option>
-            <option value="postponed">postponed</option>
-            <option value="rescheduled">rescheduled</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="ongoing">Ongoing</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="postponed">Postponed</option>
+            <option value="rescheduled">Rescheduled</option>
           </select>
         </div>
-
-        {/* Refresh */}
-        <button
-          onClick={handleReset}
-          className="p-2.5 flex items-center gap-2 border border-slate-200 text-slate-600 transition-all duration-300 cursor-pointer hover:bg-slate-50"
-        >
-          <RefreshCw size={18} />
-          Reset
-        </button>
       </div>
     </div>
   );

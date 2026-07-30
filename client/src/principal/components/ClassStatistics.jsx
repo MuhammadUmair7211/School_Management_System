@@ -3,7 +3,6 @@ import { Bookmark, GraduationCap, UserRound, Users } from "lucide-react";
 const ClassStatistics = ({ classes = [] }) => {
   // Total Classes
   const totalClasses = classes.length;
-  console.log(classes);
 
   // Total Sections
   const totalSections = classes.reduce(

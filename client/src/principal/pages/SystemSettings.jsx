@@ -61,7 +61,7 @@ export default function SystemSettingsPage() {
                   onChange={(e) =>
                     handleGeneralChange("schoolName", e.target.value)
                   }
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
                 />
               </div>
 
@@ -75,7 +75,7 @@ export default function SystemSettingsPage() {
                   onChange={(e) =>
                     handleGeneralChange("schoolCode", e.target.value)
                   }
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
                 />
               </div>
 
@@ -89,7 +89,7 @@ export default function SystemSettingsPage() {
                   onChange={(e) =>
                     handleGeneralChange("schoolMotto", e.target.value)
                   }
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
                 />
               </div>
 
@@ -103,7 +103,7 @@ export default function SystemSettingsPage() {
                     onChange={(e) =>
                       handleGeneralChange("schoolLanguage", e.target.value)
                     }
-                    className="w-full appearance-none px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs bg-white pr-8"
+                    className="w-full appearance-none px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs bg-white pr-8"
                   >
                     <option value="English">English</option>
                     <option value="Spanish">Spanish</option>
@@ -123,7 +123,7 @@ export default function SystemSettingsPage() {
                     onChange={(e) =>
                       handleGeneralChange("timezone", e.target.value)
                     }
-                    className="w-full appearance-none px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs bg-white pr-8"
+                    className="w-full appearance-none px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs bg-white pr-8"
                   >
                     <option value="(GMT+05:00) Pakistan Standard Time">
                       (GMT+05:00) Pakistan Standard Time
@@ -144,7 +144,7 @@ export default function SystemSettingsPage() {
                     onChange={(e) =>
                       handleGeneralChange("dateFormat", e.target.value)
                     }
-                    className="w-full appearance-none px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs bg-white pr-8"
+                    className="w-full appearance-none px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs bg-white pr-8"
                   >
                     <option value="DD MMM YYYY (12 July 2026)">
                       DD MMM YYYY (12 July 2026)
@@ -172,7 +172,7 @@ export default function SystemSettingsPage() {
                     onChange={(e) =>
                       handleGeneralChange("timeFormat", e.target.value)
                     }
-                    className="text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
+                    className="text-blue-600 focus:ring-blue-500 h-3.5 w-3.5"
                   />
                   <span className="ml-2">12 Hours</span>
                 </label>
@@ -185,7 +185,7 @@ export default function SystemSettingsPage() {
                     onChange={(e) =>
                       handleGeneralChange("timeFormat", e.target.value)
                     }
-                    className="text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
+                    className="text-blue-600 focus:ring-blue-500 h-3.5 w-3.5"
                   />
                   <span className="ml-2">24 Hours</span>
                 </label>
@@ -212,9 +212,7 @@ export default function SystemSettingsPage() {
                     )
                   }
                   className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                    generalPrefs.maintenanceMode
-                      ? "bg-indigo-600"
-                      : "bg-gray-200"
+                    generalPrefs.maintenanceMode ? "bg-blue-600" : "bg-gray-200"
                   }`}
                 >
                   <span
@@ -229,7 +227,7 @@ export default function SystemSettingsPage() {
             </div>
 
             <div className="pt-2">
-              <button className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium shadow-sm transition-colors">
+              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium shadow-sm transition-colors">
                 Save Changes
               </button>
             </div>
@@ -252,7 +250,7 @@ export default function SystemSettingsPage() {
                   onChange={(e) =>
                     handleConfigChange("sessionTimeout", e.target.value)
                   }
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
                 />
               </div>
 
@@ -266,7 +264,7 @@ export default function SystemSettingsPage() {
                   onChange={(e) =>
                     handleConfigChange("maxLoginAttempts", e.target.value)
                   }
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
                 />
               </div>
 
@@ -280,7 +278,7 @@ export default function SystemSettingsPage() {
                   onChange={(e) =>
                     handleConfigChange("passwordExpiry", e.target.value)
                   }
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
                 />
               </div>
             </div>
@@ -305,7 +303,7 @@ export default function SystemSettingsPage() {
                     )
                   }
                   className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                    sysConfig.twoFactorAuth ? "bg-indigo-600" : "bg-gray-200"
+                    sysConfig.twoFactorAuth ? "bg-blue-600" : "bg-gray-200"
                   }`}
                 >
                   <span
@@ -338,7 +336,7 @@ export default function SystemSettingsPage() {
                   }
                   className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
                     sysConfig.allowMultipleSessions
-                      ? "bg-indigo-600"
+                      ? "bg-blue-600"
                       : "bg-gray-200"
                   }`}
                 >
@@ -354,7 +352,7 @@ export default function SystemSettingsPage() {
             </div>
 
             <div className="pt-2">
-              <button className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium shadow-sm transition-colors">
+              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium shadow-sm transition-colors">
                 Save Configuration
               </button>
             </div>
@@ -428,7 +426,7 @@ export default function SystemSettingsPage() {
                   />
                   {/* Progress Circle (49%) */}
                   <path
-                    className="text-indigo-600"
+                    className="text-blue-600"
                     strokeDasharray="49, 100"
                     strokeWidth="3.8"
                     strokeLinecap="round"
@@ -449,7 +447,7 @@ export default function SystemSettingsPage() {
               <div className="space-y-1.5 text-xs">
                 <div className="flex items-center justify-between space-x-4">
                   <div className="flex items-center space-x-2">
-                    <span className="w-2 h-2 rounded-full bg-indigo-600"></span>
+                    <span className="w-2 h-2 rounded-full bg-blue-600"></span>
                     <span className="text-gray-500">Used Space</span>
                   </div>
                   <span className="font-medium text-gray-700">24.5 GB</span>
@@ -474,7 +472,7 @@ export default function SystemSettingsPage() {
             </div>
 
             <div className="pt-1 text-right">
-              <button className="text-xs font-medium text-indigo-600 hover:text-indigo-700">
+              <button className="text-xs font-medium text-blue-600 hover:text-blue-700">
                 Manage Storage &rarr;
               </button>
             </div>
@@ -487,17 +485,17 @@ export default function SystemSettingsPage() {
             </h2>
 
             <div className="space-y-2">
-              <button className="w-full flex items-center justify-center space-x-2 py-2 px-4 border border-indigo-200 text-indigo-600 hover:bg-indigo-50 rounded-lg text-xs font-medium transition-colors">
+              <button className="w-full flex items-center justify-center space-x-2 py-2 px-4 border border-blue-200 text-blue-600 hover:bg-blue-50 rounded-lg text-xs font-medium transition-colors">
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Clear Cache</span>
               </button>
 
-              <button className="w-full flex items-center justify-center space-x-2 py-2 px-4 border border-indigo-200 text-indigo-600 hover:bg-indigo-50 rounded-lg text-xs font-medium transition-colors">
+              <button className="w-full flex items-center justify-center space-x-2 py-2 px-4 border border-blue-200 text-blue-600 hover:bg-blue-50 rounded-lg text-xs font-medium transition-colors">
                 <Zap className="w-3.5 h-3.5" />
                 <span>Optimize Database</span>
               </button>
 
-              <button className="w-full flex items-center justify-center space-x-2 py-2 px-4 border border-indigo-200 text-indigo-600 hover:bg-indigo-50 rounded-lg text-xs font-medium transition-colors">
+              <button className="w-full flex items-center justify-center space-x-2 py-2 px-4 border border-blue-200 text-blue-600 hover:bg-blue-50 rounded-lg text-xs font-medium transition-colors">
                 <FileText className="w-3.5 h-3.5" />
                 <span>View System Logs</span>
               </button>

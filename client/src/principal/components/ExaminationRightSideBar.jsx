@@ -142,7 +142,7 @@ export default function ExaminationRightSideBar() {
             ?.slice(upcomingExams?.length - 3, upcomingExams?.length)
             .map((examination) => {
               return (
-                <div className="flex items-center gap-3">
+                <div key={examination._id} className="flex items-center gap-3">
                   <div className="flex flex-col items-center justify-center w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl shrink-0">
                     <span className="text-base font-bold leading-tight">
                       {new Date(examination.startDate).getDate()}

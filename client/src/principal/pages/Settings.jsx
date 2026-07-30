@@ -65,7 +65,7 @@ const Settings = () => {
                 className={({ isActive }) =>
                   `relative flex items-center gap-2 pb-3 text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? "text-purple-600 border-b border-purple-600"
+                      ? "text-blue-600 border-b border-blue-600"
                       : "text-gray-500 hover:text-gray-800"
                   }`
                 }
@@ -81,7 +81,7 @@ const Settings = () => {
                     <span>{link.name}</span>
 
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-purple-600" />
+                      <span className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-blue-600" />
                     )}
                   </>
                 )}

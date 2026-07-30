@@ -68,7 +68,7 @@ const navigationGroups = [
         path: "/examinations",
       },
       {
-        icon: <Wallet size={18} className="text-emerald-600" />,
+        icon: <Wallet size={18} className="text-emerald-500" />,
         name: "Fee Management",
         path: "/fee-management",
       },
@@ -94,7 +94,7 @@ const navigationGroups = [
         path: "/view-calendar",
       },
       {
-        icon: <Text size={18} className="text-cyan-500" />,
+        icon: <Text size={18} className="text-rose-500" />,
         name: "Message",
         path: "/messages",
       },
@@ -105,43 +105,53 @@ const navigationGroups = [
     heading: "SYSTEM",
     links: [
       {
-        icon: <BarChart3 size={18} className="text-blue-600" />,
+        icon: <BarChart3 size={18} className="text-blue-500" />,
         name: "Reports",
         path: "/reports",
       },
       {
-        icon: <Settings size={18} className="text-gray-500" />,
+        icon: <Settings size={18} className="text-slate-400" />,
         name: "Settings",
         path: "/settings",
       },
     ],
   },
 ];
+
 const NavigationLinks = () => {
   return (
-    <nav className="space-y-2">
+    <nav className="w-full">
       {navigationGroups.map((group) => (
-        <div key={group.heading}>
-          <h2 className="hidden md:block px-4 mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+        <div key={group.heading} className="w-full">
+          {/* Group Heading */}
+          <h2 className="mb-2 hidden px-4 text-xs font-semibold uppercase tracking-wider text-slate-500 md:block">
             {group.heading}
           </h2>
 
-          <div className="md:space-y-1">
+          {/* Navigation Items */}
+          <div className="">
             {group.links.map((navigation) => (
               <NavLink
                 key={navigation.name}
                 to={navigation.path}
+                title={navigation.name}
                 className={({ isActive }) =>
-                  `w-full flex items-center justify-center md:justify-start gap-0 md:gap-3 md:px-4 md:py-2 rounded-full border-l-0 md:border-l-4 transition-all duration-300 ${
+                  `flex h-11 w-full min-w-0 shrink-0 items-center rounded-full border-l-4 transition-all duration-200 ${
                     isActive
-                      ? "bg-blue-600 md:border-blue-300 text-white shadow-lg"
+                      ? "border-blue-400 bg-blue-600 text-white shadow-lg shadow-blue-900/20"
                       : "border-transparent text-slate-300 hover:bg-slate-800 hover:text-white"
                   }`
                 }
               >
-                <span className="shrink-0">{navigation.icon}</span>
+                {/* Icon */}
+                <span className="flex h-full w-full shrink-0 items-center justify-center md:w-auto md:justify-start md:pl-3">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center">
+                    {navigation.icon}
+                  </span>
+                </span>
 
-                <span className="hidden md:block text-sm font-medium">
+                {/* Text */}
+                <span className="ml-3 hidden truncate pr-3 text-sm font-medium md:block">
                   {navigation.name}
                 </span>
               </NavLink>

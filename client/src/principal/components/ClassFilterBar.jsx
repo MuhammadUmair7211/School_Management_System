@@ -1,74 +1,136 @@
-import { RefreshCw, Search } from "lucide-react";
+import { RefreshCw, Search, ChevronDown } from "lucide-react";
 
 const ClassFilterBar = () => {
   return (
-    <div className="mt-2 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end">
+    <div className="mt-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      {/* Filter Header */}
+      <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h3 className="text-sm font-semibold text-slate-800">
+            Filter Classes
+          </h3>
+
+          <p className="text-xs text-slate-500">
+            Search and filter classes by academic session, teacher, or status.
+          </p>
+        </div>
+
+        {/* Reset Button */}
+        <button
+          type="button"
+          className="mt-2 flex w-fit items-center justify-center gap-2 border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-800 sm:mt-0"
+        >
+          <RefreshCw size={16} />
+          Reset Filters
+        </button>
+      </div>
+
+      {/* Filters */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* Search */}
-        <div className="flex-1">
-          <label className="mb-2 block text-xs font-semibold text-slate-500">
-            Search
+        <div>
+          <label
+            htmlFor="class-search"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
+            Search Class
           </label>
 
           <div className="relative">
-            <Search
-              size={18}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"
+            <input
+              id="class-search"
+              type="text"
+              placeholder="Search class name or grade..."
+              className="w-full border border-slate-200 bg-white px-3 py-2.5 pr-10 text-sm text-slate-700 outline-none transition-all placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
             />
 
-            <input
-              type="text"
-              placeholder="Search by class name, grade..."
-              className="w-full rounded-xl border border-slate-200 py-3 pl-4 pr-12 text-sm outline-none transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+            <Search
+              size={17}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
             />
           </div>
         </div>
 
         {/* Academic Session */}
-        <div className="w-full lg:w-44">
-          <label className="mb-2 block text-xs font-semibold text-slate-500">
+        <div>
+          <label
+            htmlFor="academic-session"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
             Academic Session
           </label>
 
-          <select className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100">
-            <option>2026-27</option>
-            <option>2025-26</option>
-            <option>2024-25</option>
-          </select>
+          <div className="relative">
+            <select
+              id="academic-session"
+              className="w-full cursor-pointer appearance-none border border-slate-200 bg-white px-3 py-2.5 pr-9 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+            >
+              <option value="all">All Sessions</option>
+              <option value="2026-27">2026-27</option>
+              <option value="2025-26">2025-26</option>
+              <option value="2024-25">2024-25</option>
+            </select>
+
+            <ChevronDown
+              size={16}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+          </div>
         </div>
 
         {/* Class Teacher */}
-        <div className="w-full lg:w-44">
-          <label className="mb-2 block text-xs font-semibold text-slate-500">
+        <div>
+          <label
+            htmlFor="class-teacher"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
             Class Teacher
           </label>
 
-          <select className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100">
-            <option>All Teachers</option>
-            <option>Ahmed Khan</option>
-            <option>Ayesha Ali</option>
-            <option>Usman Iqbal</option>
-            <option>Sara Ahmed</option>
-          </select>
+          <div className="relative">
+            <select
+              id="class-teacher"
+              className="w-full cursor-pointer appearance-none border border-slate-200 bg-white px-3 py-2.5 pr-9 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+            >
+              <option value="all">All Teachers</option>
+              <option value="ahmed-khan">Ahmed Khan</option>
+              <option value="ayesha-ali">Ayesha Ali</option>
+              <option value="usman-iqbal">Usman Iqbal</option>
+              <option value="sara-ahmed">Sara Ahmed</option>
+            </select>
+
+            <ChevronDown
+              size={16}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+          </div>
         </div>
 
         {/* Status */}
-        <div className="w-full lg:w-40">
-          <label className="mb-2 block text-xs font-semibold text-slate-500">
+        <div>
+          <label
+            htmlFor="class-status"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
             Status
           </label>
 
-          <select className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100">
-            <option>All Status</option>
-            <option>Active</option>
-            <option>Inactive</option>
-          </select>
-        </div>
+          <div className="relative">
+            <select
+              id="class-status"
+              className="w-full cursor-pointer appearance-none border border-slate-200 bg-white px-3 py-2.5 pr-9 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+            >
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
 
-        {/* Refresh */}
-        <button className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-all duration-300 hover:rotate-180 hover:bg-slate-50">
-          <RefreshCw size={18} />
-        </button>
+            <ChevronDown
+              size={16}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

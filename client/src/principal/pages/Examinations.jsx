@@ -112,7 +112,6 @@ const Examinations = () => {
             totalItems={totalExaminations}
             setItemsPerPage={setItemsPerPage}
           />
-          <ExaminationFooterActionCard />
         </div>
 
         {/* Right Side */}
@@ -120,6 +119,7 @@ const Examinations = () => {
           <ExaminationRightSideBar />
         </aside>
       </div>
+      <ExaminationFooterActionCard />
     </div>
   );
 };

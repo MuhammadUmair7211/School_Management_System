@@ -52,7 +52,7 @@ export default function AddNewSubject() {
         <div className="rounded-xl border border-slate-200/80 shadow-sm overflow-hidden">
           {/* Header Section Inside Card */}
           <div className="p-4 border-b border-slate-100 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <BookMarked className="w-6 h-6" />
             </div>
             <div>
@@ -81,7 +81,7 @@ export default function AddNewSubject() {
                     value={formData.subjectName}
                     onChange={handleChange}
                     placeholder="Enter subject name"
-                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 text-slate-800"
+                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-slate-400 text-slate-800"
                   />
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default function AddNewSubject() {
                     value={formData.subjectCode}
                     onChange={handleChange}
                     placeholder="Enter subject code (e.g. MATH101)"
-                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 text-slate-800"
+                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-slate-400 text-slate-800"
                   />
                 </div>
               </div>
@@ -116,7 +116,7 @@ export default function AddNewSubject() {
                     name="classGrade"
                     value={formData.classGrade}
                     onChange={handleChange}
-                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all appearance-none bg-white text-slate-600"
+                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all appearance-none bg-white text-slate-600"
                   >
                     <option value="">Select class or grade</option>
                     <option value="Grade 8">Grade 8</option>
@@ -137,7 +137,7 @@ export default function AddNewSubject() {
                     name="subjectType"
                     value={formData.subjectType}
                     onChange={handleChange}
-                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all appearance-none bg-white text-slate-600"
+                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all appearance-none bg-white text-slate-600"
                   >
                     <option value="">Select subject type</option>
                     <option value="Theory">Theory</option>
@@ -163,7 +163,7 @@ export default function AddNewSubject() {
                     value={formData.creditHours}
                     onChange={handleChange}
                     placeholder="Enter credit hours (e.g. 3)"
-                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 text-slate-800"
+                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-slate-400 text-slate-800"
                   />
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function AddNewSubject() {
                     name="teacher"
                     value={formData.teacher}
                     onChange={handleChange}
-                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all appearance-none bg-white text-slate-600"
+                    className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all appearance-none bg-white text-slate-600"
                   >
                     <option value="">Select teacher</option>
                     <option value="John Doe">John Doe</option>
@@ -202,7 +202,7 @@ export default function AddNewSubject() {
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="Enter subject description..."
-                  className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 text-slate-800 resize-y"
+                  className="w-full pl-10 p-2 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-slate-400 text-slate-800 resize-y"
                 ></textarea>
               </div>
             </div>
@@ -250,7 +250,7 @@ export default function AddNewSubject() {
 
             <button
               type="button"
-              className="flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-md shadow-indigo-200 transition-all active:scale-[0.98]"
+              className="flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-md shadow-blue-200 transition-all active:scale-[0.98]"
             >
               <Save className="w-3.5 h-3.5" />
               Create Subject

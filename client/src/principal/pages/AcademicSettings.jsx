@@ -185,7 +185,7 @@ const AcademicSettings = () => {
 
                 <button
                   type="button"
-                  className="flex items-center gap-1 text-xs font-medium text-purple-600 transition hover:text-purple-700"
+                  className="flex items-center gap-1 text-xs font-medium text-blue-600 transition hover:text-blue-700"
                 >
                   <Edit3 size={13} />
                   Edit
@@ -432,7 +432,7 @@ const SettingsCard = ({ icon, title, children }) => {
   return (
     <section className="rounded-xl border border-gray-200 bg-white shadow-sm">
       <div className="flex items-center gap-3 border-b border-gray-100 px-5 py-4">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-purple-50 text-purple-600">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
           {icon}
         </div>
 
@@ -469,9 +469,9 @@ const FormField = ({
     outline-none
     transition
     placeholder:text-gray-400
-    focus:border-purple-500
+    focus:border-blue-500
     focus:ring-2
-    focus:ring-purple-100
+    focus:ring-blue-100
     ${suffix ? "pr-20" : ""}
     ${type === "select" ? "appearance-none pr-9" : ""}
   `;
@@ -538,7 +538,7 @@ const Toggle = ({ label, description, enabled, onChange }) => {
         type="button"
         onClick={onChange}
         className={`relative h-5 w-9 shrink-0 rounded-full transition-colors ${
-          enabled ? "bg-purple-600" : "bg-gray-300"
+          enabled ? "bg-blue-600" : "bg-gray-300"
         }`}
       >
         <span
@@ -562,7 +562,7 @@ const Checkbox = ({ label, checked, onChange }) => {
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="h-3.5 w-3.5 cursor-pointer rounded border-gray-300 accent-purple-600"
+        className="h-3.5 w-3.5 cursor-pointer rounded border-gray-300 accent-blue-600"
       />
 
       <span>{label}</span>
@@ -584,9 +584,8 @@ const ActionButton = ({
     "inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-xs font-medium transition-colors";
 
   const variants = {
-    primary: "bg-purple-600 text-white hover:bg-purple-700",
-    secondary:
-      "border border-purple-200 bg-white text-purple-600 hover:bg-purple-50",
+    primary: "bg-blue-600 text-white hover:bg-blue-700",
+    secondary: "border border-blue-200 bg-white text-blue-600 hover:bg-blue-50",
   };
 
   return (

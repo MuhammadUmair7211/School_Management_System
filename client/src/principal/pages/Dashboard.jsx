@@ -7,114 +7,155 @@ import { useSelector } from "react-redux";
 import AttendanceChart from "../components/AttendanceChart";
 import RecentActivities from "../components/RecentActivities";
 import TitleBar from "../components/TitleBar";
+
 const Dashboard = () => {
   const { teachers } = useSelector((state) => state.teachers);
   const { students } = useSelector((state) => state.students);
   const { classes } = useSelector((state) => state.classes);
   const { fees } = useSelector((state) => state.fees);
   const { attendances } = useSelector((state) => state.attendances);
-  const presentStudents = attendances?.filter(
-    (record) => record.status === "Present",
-  ).length;
+
+  // Attendance
+  const presentStudents =
+    attendances?.filter((record) => record.status === "Present").length || 0;
+
   const attendancePercentage =
     attendances?.length > 0
-      ? ((presentStudents / attendances?.length) * 100).toFixed(1)
+      ? ((presentStudents / attendances.length) * 100).toFixed(1)
       : 0;
-  const totalRevenue = fees?.reduce((sum, fee) => sum + fee.amount, 0);
+
+  // Revenue
+  const totalRevenue =
+    fees?.reduce((sum, fee) => sum + Number(fee.amount || 0), 0) || 0;
 
   const statistics = [
     {
-      icon: <Peoples theme="filled" size="40" className="text-blue-600" />,
+      icon: <Peoples className="text-blue-600 text-2xl md:text-3xl" />,
       title: "Total Students",
-      value: students.length,
+      value: students?.length || 0,
       page: "View all students",
       path: "/students",
-      bgColor: "bg-blue-200",
-      cardBg: "bg-blue-100",
-      borderColor: "border-blue-300",
+      bgColor: "bg-blue-100",
+      cardBg: "bg-blue-50",
+      borderColor: "border-blue-100",
     },
     {
-      icon: (
-        <UserBusiness theme="outline" size="40" className="text-green-600" />
-      ),
+      icon: <UserBusiness className="text-emerald-600 text-2xl md:text-3xl" />,
       title: "Total Teachers",
-      value: teachers.length,
+      value: teachers?.length || 0,
       page: "View all teachers",
       path: "/teachers",
-      bgColor: "bg-green-200",
-      cardBg: "bg-green-100",
-      borderColor: "border-green-300",
+      bgColor: "bg-emerald-100",
+      cardBg: "bg-emerald-50",
+      borderColor: "border-emerald-100",
     },
     {
-      icon: (
-        <BachelorCap theme="outline" size="40" className="text-violet-600" />
-      ),
+      icon: <BachelorCap className="text-violet-600 text-2xl md:text-3xl" />,
       title: "Total Classes",
-      value: classes.length,
+      value: classes?.length || 0,
       page: "View all classes",
       path: "/classes",
-      bgColor: "bg-violet-200",
-      cardBg: "bg-violet-100",
-      borderColor: "border-violet-300",
+      bgColor: "bg-violet-100",
+      cardBg: "bg-violet-50",
+      borderColor: "border-violet-100",
     },
     {
-      icon: <Wallet theme="outline" size="40" className="text-yellow-600" />,
+      icon: <Wallet className="text-orange-600 text-2xl md:text-3xl" />,
       title: "Monthly Revenue",
-      value: "PKR " + totalRevenue,
+      value: `PKR ${totalRevenue.toLocaleString("en-GB")}`,
       page: "View financial report",
       path: "/reports",
-      bgColor: "bg-orange-200",
-      cardBg: "bg-orange-100",
-      borderColor: "border-orange-300",
+      bgColor: "bg-orange-100",
+      cardBg: "bg-orange-50",
+      borderColor: "border-orange-100",
     },
     {
-      icon: <BadgePercent size={40} className="text-red-600" />,
+      icon: <BadgePercent className="text-rose-600 text-2xl md:text-3xl" />,
       title: "Attendance Today",
-      value: attendancePercentage,
+      value: `${attendancePercentage}%`,
       page: "View attendance",
       path: "/attendance",
-      bgColor: "bg-red-200",
-      cardBg: "bg-red-100",
-      borderColor: "border-red-300",
+      bgColor: "bg-rose-100",
+      cardBg: "bg-rose-50",
+      borderColor: "border-rose-100",
     },
   ];
 
   return (
-    <div className="flex h-full flex-col overflow-hidden">
-      <TitleBar />
-      <div className="flex-1 grid grid-cols-1 xl:grid-cols-12 gap-2">
-        {/* LEFT */}
-        <div className="xl:col-span-9 space-y-2">
-          <StatCard statistics={statistics} />
+    <div className="flex h-full min-h-0 flex-col overflow-hidden">
+      {/* Page Header */}
+      <div className="shrink-0">
+        <TitleBar />
+      </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
-            <div className="lg:col-span-8">
-              <AttendanceChart />
+      {/* Dashboard Content */}
+      <div className="mt-2 min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="grid grid-cols-1 gap-2 xl:grid-cols-12">
+          {/* ================================= */}
+          {/* LEFT CONTENT */}
+          {/* ================================= */}
+          <div className="space-y-2 xl:col-span-9">
+            {/* Statistics */}
+            <section>
+              <StatCard statistics={statistics} />
+            </section>
+
+            {/* Attendance + Quick Actions */}
+            <section className="grid grid-cols-1 gap-2 lg:grid-cols-12">
+              {/* Attendance Chart */}
+              <div className="min-w-0 lg:col-span-8">
+                <div className="h-full overflow-hidden rounded-xl transition-shadow duration-300 hover:shadow-md">
+                  <AttendanceChart />
+                </div>
+              </div>
+
+              {/* Quick Actions */}
+              <div className="min-w-0 lg:col-span-4">
+                <div className="h-full overflow-hidden rounded-xl transition-shadow duration-300 hover:shadow-md">
+                  <QuickActions />
+                </div>
+              </div>
+            </section>
+
+            {/* School Banner */}
+            <section className="hidden overflow-hidden rounded-xl border border-slate-200 p-1 shadow-sm md:block">
+              <div className="relative overflow-hidden rounded-xl">
+                <img
+                  src="/footer-logo.jpg"
+                  alt="Green Valley High School"
+                  className="h-52 w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/50 via-transparent to-transparent" />
+
+                <div className="absolute bottom-4 left-5 text-white">
+                  <p className="text-xs font-medium uppercase tracking-wider text-white/80">
+                    Green Valley High School
+                  </p>
+
+                  <h2 className="mt-1 text-lg font-bold">
+                    Building brighter futures
+                  </h2>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          {/* ================================= */}
+          {/* RIGHT SIDEBAR */}
+          {/* ================================= */}
+          <aside className="flex min-w-0 flex-col gap-2 xl:col-span-3">
+            {/* Fee Collection */}
+            <div className="overflow-hidden rounded-xl border border-slate-200 p-4 shadow-sm transition-shadow duration-300 hover:shadow-md">
+              <FeeCollectionChart />
             </div>
 
-            <div className="lg:col-span-4">
-              <QuickActions />
+            {/* Recent Activities */}
+            <div className="flex-1 overflow-hidden rounded-xl border border-slate-200 p-4 shadow-sm transition-shadow duration-300 hover:shadow-md">
+              <RecentActivities />
             </div>
-          </div>
-
-          <div className="hidden md:block overflow-hidden rounded-xl shadow-sm">
-            <img
-              src="/footer-logo.jpg"
-              alt="School Banner"
-              className="w-full h-55 object-cover"
-            />
-          </div>
-        </div>
-
-        {/* RIGHT */}
-        <div className="xl:col-span-3 flex flex-col gap-4 shadow-sm border border-slate-200 rounded-xl p-2">
-          <div className="">
-            <FeeCollectionChart />
-          </div>
-
-          <div className="flex-1">
-            <RecentActivities />
-          </div>
+          </aside>
         </div>
       </div>
     </div>

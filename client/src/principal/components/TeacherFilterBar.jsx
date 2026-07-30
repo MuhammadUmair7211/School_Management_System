@@ -1,79 +1,139 @@
-import { Search, RotateCw } from "lucide-react";
+import { RefreshCw, Search, ChevronDown } from "lucide-react";
 
 const TeacherFilterBar = () => {
   return (
-    <div className="mt-2 rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
-      <div className="flex flex-col gap-4 xl:flex-row xl:items-end">
+    <div className="mt-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      {/* Filter Header */}
+      <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h3 className="text-sm font-semibold text-slate-800">
+            Filter Teachers
+          </h3>
+
+          <p className="text-xs text-slate-500">
+            Search and filter teachers by department, subject, or status.
+          </p>
+        </div>
+
+        {/* Reset Button */}
+        <button
+          type="button"
+          className="mt-2 flex w-fit items-center justify-center gap-2 border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-800 sm:mt-0"
+        >
+          <RefreshCw size={16} />
+          Reset Filters
+        </button>
+      </div>
+
+      {/* Filters */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* Search */}
-        <div className="flex-1">
-          <label className="mb-2 block text-sm font-medium text-slate-600">
-            Search
+        <div>
+          <label
+            htmlFor="teacher-search"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
+            Search Teacher
           </label>
 
           <div className="relative">
-            <Search
-              size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            <input
+              id="teacher-search"
+              type="search"
+              placeholder="Search by name, subject, email..."
+              className="w-full border border-slate-200 bg-white px-3 py-2.5 pr-10 text-sm text-slate-700 outline-none transition-all placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
             />
 
-            <input
-              type="search"
-              placeholder="Search by name, subject, email, or phone..."
-              className="p-2 w-full border border-slate-200 pl-10 pr-4 outline-none transition "
+            <Search
+              size={17}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
             />
           </div>
         </div>
 
         {/* Department */}
-        <div className="w-full sm:w-48">
-          <label className="mb-2 block text-xs font-medium text-slate-600">
+        <div>
+          <label
+            htmlFor="teacher-department"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
             Department
           </label>
 
-          <select className="w-full border border-slate-200 p-2 text-sm outline-none ">
-            <option>All Departments</option>
-            <option>Science</option>
-            <option>Languages</option>
-            <option>Computer Science</option>
-            <option>Arts</option>
-            <option>Commerce</option>
-          </select>
+          <div className="relative">
+            <select
+              id="teacher-department"
+              className="w-full cursor-pointer appearance-none border border-slate-200 bg-white px-3 py-2.5 pr-9 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+            >
+              <option value="all">All Departments</option>
+              <option value="science">Science</option>
+              <option value="languages">Languages</option>
+              <option value="computer-science">Computer Science</option>
+              <option value="arts">Arts</option>
+              <option value="commerce">Commerce</option>
+            </select>
+
+            <ChevronDown
+              size={16}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+          </div>
         </div>
 
         {/* Subject */}
-        <div className="w-full sm:w-48">
-          <label className="mb-2 block text-xs font-medium text-slate-500">
+        <div>
+          <label
+            htmlFor="teacher-subject"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
             Subject
           </label>
 
-          <select className="w-full border border-slate-200 p-2 text-sm outline-none">
-            <option>All Subjects</option>
-            <option>Mathematics</option>
-            <option>Physics</option>
-            <option>English</option>
-            <option>Urdu</option>
-            <option>Computer Science</option>
-          </select>
+          <div className="relative">
+            <select
+              id="teacher-subject"
+              className="w-full cursor-pointer appearance-none border border-slate-200 bg-white px-3 py-2.5 pr-9 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+            >
+              <option value="all">All Subjects</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="physics">Physics</option>
+              <option value="english">English</option>
+              <option value="urdu">Urdu</option>
+              <option value="computer-science">Computer Science</option>
+            </select>
+
+            <ChevronDown
+              size={16}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+          </div>
         </div>
 
         {/* Status */}
-        <div className="w-full sm:w-48">
-          <label className="mb-2 block text-xs font-medium text-slate-500">
+        <div>
+          <label
+            htmlFor="teacher-status"
+            className="mb-1.5 block text-xs font-semibold text-slate-600"
+          >
             Status
           </label>
 
-          <select className="w-full border border-slate-200 p-2 text-sm outline-none ">
-            <option>All Status</option>
-            <option>Active</option>
-            <option>Inactive</option>
-          </select>
-        </div>
+          <div className="relative">
+            <select
+              id="teacher-status"
+              className="w-full cursor-pointer appearance-none border border-slate-200 bg-white px-3 py-2.5 pr-9 text-sm font-medium text-slate-700 outline-none transition-all focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+            >
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
 
-        {/* Reset */}
-        <button className="flex items-center gap-2 border border-slate-300 bg-white px-5 py-2 text-slate-700 transition hover:bg-slate-100 cursor-pointer duration-300">
-          <RotateCw size={18} />
-          Reset
-        </button>
+            <ChevronDown
+              size={16}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

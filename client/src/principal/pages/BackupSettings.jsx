@@ -28,7 +28,7 @@ export default function BackupSettings() {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="mt-0.5 rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                    className="mt-0.5 rounded text-blue-600 focus:ring-blue-500 h-4 w-4"
                   />
                   <div>
                     <span className="block text-xs font-semibold text-gray-800">
@@ -45,7 +45,7 @@ export default function BackupSettings() {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="mt-0.5 rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                    className="mt-0.5 rounded text-blue-600 focus:ring-blue-500 h-4 w-4"
                   />
                   <div>
                     <span className="block text-xs font-semibold text-gray-800">
@@ -62,7 +62,7 @@ export default function BackupSettings() {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="mt-0.5 rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                    className="mt-0.5 rounded text-blue-600 focus:ring-blue-500 h-4 w-4"
                   />
                   <div>
                     <span className="block text-xs font-semibold text-gray-800">
@@ -79,7 +79,7 @@ export default function BackupSettings() {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="mt-0.5 rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                    className="mt-0.5 rounded text-blue-600 focus:ring-blue-500 h-4 w-4"
                   />
                   <div>
                     <span className="block text-xs font-semibold text-gray-800">
@@ -101,13 +101,13 @@ export default function BackupSettings() {
               <textarea
                 rows={7}
                 placeholder="Enter backup description..."
-                className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs text-gray-700 resize-none"
+                className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs text-gray-700 resize-none"
               />
             </div>
           </div>
 
           <div className="pt-2">
-            <button className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium shadow-sm transition-colors">
+            <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium shadow-sm transition-colors">
               Create Backup Now
             </button>
           </div>
@@ -191,7 +191,7 @@ export default function BackupSettings() {
                       </span>
                     </td>
                     <td className="py-3.5 text-right">
-                      <button className="px-3 py-1 border border-indigo-200 text-indigo-600 hover:bg-indigo-50 rounded-md text-[11px] font-medium transition-colors">
+                      <button className="px-3 py-1 border border-blue-200 text-blue-600 hover:bg-blue-50 rounded-md text-[11px] font-medium transition-colors">
                         Download
                       </button>
                     </td>
@@ -211,7 +211,7 @@ export default function BackupSettings() {
                       </span>
                     </td>
                     <td className="py-3.5 text-right">
-                      <button className="px-3 py-1 border border-indigo-200 text-indigo-600 hover:bg-indigo-50 rounded-md text-[11px] font-medium transition-colors">
+                      <button className="px-3 py-1 border border-blue-200 text-blue-600 hover:bg-blue-50 rounded-md text-[11px] font-medium transition-colors">
                         Download
                       </button>
                     </td>
@@ -231,7 +231,7 @@ export default function BackupSettings() {
                       </span>
                     </td>
                     <td className="py-3.5 text-right">
-                      <button className="px-3 py-1 border border-indigo-200 text-indigo-600 hover:bg-indigo-50 rounded-md text-[11px] font-medium transition-colors">
+                      <button className="px-3 py-1 border border-blue-200 text-blue-600 hover:bg-blue-50 rounded-md text-[11px] font-medium transition-colors">
                         Download
                       </button>
                     </td>
@@ -242,7 +242,7 @@ export default function BackupSettings() {
           </div>
 
           <div className="pt-2 text-center">
-            <button className="text-xs font-medium text-indigo-600 hover:text-indigo-700">
+            <button className="text-xs font-medium text-blue-600 hover:text-blue-700">
               View All Backups
             </button>
           </div>
@@ -262,7 +262,7 @@ export default function BackupSettings() {
               </span>
               <button
                 type="button"
-                className="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-indigo-600 transition-colors duration-200 ease-in-out focus:outline-none"
+                className="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-blue-600 transition-colors duration-200 ease-in-out focus:outline-none"
               >
                 <span className="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-4" />
               </button>
@@ -276,7 +276,7 @@ export default function BackupSettings() {
               <div className="relative">
                 <select
                   defaultValue="Daily"
-                  className="w-full appearance-none px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs bg-white text-gray-700 pr-8"
+                  className="w-full appearance-none px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs bg-white text-gray-700 pr-8"
                 >
                   <option value="Daily">Daily</option>
                   <option value="Weekly">Weekly</option>
@@ -295,7 +295,7 @@ export default function BackupSettings() {
                 <input
                   type="text"
                   defaultValue="02:00 AM"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs text-gray-700 pr-8"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs text-gray-700 pr-8"
                 />
                 <Calendar className="w-3.5 h-3.5 text-gray-400 absolute right-3 top-3 pointer-events-none" />
               </div>
@@ -310,7 +310,7 @@ export default function BackupSettings() {
                 <input
                   type="number"
                   defaultValue={30}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs text-gray-700 pr-12"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs text-gray-700 pr-12"
                 />
                 <span className="absolute right-3 top-2 text-xs text-gray-400 pointer-events-none">
                   days

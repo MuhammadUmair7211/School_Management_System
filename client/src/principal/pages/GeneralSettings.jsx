@@ -92,7 +92,7 @@ const GeneralSettings = () => {
             {/* School Information */}
             <section className="rounded-xl border border-gray-200 shadow-sm">
               <div className="flex items-center gap-3 border-b border-gray-100 p-4">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-50 text-purple-600">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                   <Building2 size={19} />
                 </div>
 
@@ -307,7 +307,7 @@ const GeneralSettings = () => {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 cursor-pointer duration-300"
+                className="flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer duration-300"
               >
                 <Save size={17} />
                 Save Changes
@@ -340,7 +340,7 @@ const GeneralSettings = () => {
                     <GraduationCap
                       size={70}
                       strokeWidth={1.2}
-                      className="text-purple-600"
+                      className="text-blue-600"
                     />
                   )}
                 </div>
@@ -358,7 +358,7 @@ const GeneralSettings = () => {
             {/* Quick Links */}
             <div className="rounded-xl border border-gray-200 shadow-sm">
               <div className="flex items-center gap-3 border-b border-gray-100 p-4">
-                <Link2 size={18} className="text-purple-600" />
+                <Link2 size={18} className="text-blue-600" />
 
                 <h3 className="text-sm font-semibold text-gray-900">
                   Quick Links
@@ -370,7 +370,7 @@ const GeneralSettings = () => {
                   <button
                     type="button"
                     key={link}
-                    className="flex w-full items-center justify-between rounded-lg p-2 text-left text-sm text-gray-600 transition hover:bg-purple-50 hover:text-purple-600"
+                    className="flex w-full items-center justify-between rounded-lg p-2 text-left text-sm text-gray-600 transition hover:bg-blue-50 hover:text-blue-600"
                   >
                     <span>{link}</span>
                     <ChevronRight size={16} />
@@ -382,7 +382,7 @@ const GeneralSettings = () => {
             {/* System Information */}
             <div className="rounded-xl border border-gray-200 shadow-sm">
               <div className="flex items-center gap-3 border-b border-gray-100 p-4">
-                <Info size={18} className="text-purple-600" />
+                <Info size={18} className="text-blue-600" />
 
                 <h3 className="text-sm font-semibold text-gray-900">
                   System Information
@@ -413,7 +413,7 @@ const GeneralSettings = () => {
             {/* Need Help */}
             <div className="rounded-xl border border-gray-200 shadow-sm">
               <div className="flex items-center gap-3 border-b border-gray-100 p-4">
-                <Headphones size={18} className="text-purple-600" />
+                <Headphones size={18} className="text-blue-600" />
 
                 <h3 className="text-sm font-semibold text-gray-900">
                   Need Help?
@@ -428,7 +428,7 @@ const GeneralSettings = () => {
 
                 <button
                   type="button"
-                  className="mt-2 flex items-center gap-2 rounded-lg border border-purple-200 px-4 py-2 text-sm font-medium text-purple-600 transition hover:bg-purple-50"
+                  className="mt-2 flex items-center gap-2 rounded-lg border border-blue-200 px-4 py-2 text-sm font-medium text-blue-600 transition hover:bg-blue-50"
                 >
                   <Headphones size={16} />
                   Contact Support
@@ -449,7 +449,7 @@ const GeneralSettings = () => {
 const SectionHeader = ({ icon, title, description }) => {
   return (
     <div className="flex items-center gap-3 border-b border-gray-100 px-6 py-4">
-      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-50 text-purple-600">
+      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
         {icon}
       </div>
 
@@ -489,7 +489,7 @@ const InputField = ({
         type={type}
         value={value}
         onChange={onChange}
-        className="p-2 w-full border border-gray-200 px-3 text-sm text-gray-700 outline-none transition placeholder:text-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-100"
+        className="p-2 w-full border border-gray-200 px-3 text-sm text-gray-700 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
       />
     </div>
   );
@@ -502,7 +502,7 @@ const FileUpload = ({ label, description, preview, onChange, icon }) => {
         {label}
       </label>
 
-      <label className="group flex p-4 cursor-pointer items-center gap-4 border border-dashed border-gray-300 px-4 transition hover:border-purple-400 hover:bg-purple-50/30">
+      <label className="group flex p-4 cursor-pointer items-center gap-4 border border-dashed border-gray-300 px-4 transition hover:border-blue-400 hover:bg-blue-50/30">
         <input
           type="file"
           className="hidden"
@@ -510,7 +510,7 @@ const FileUpload = ({ label, description, preview, onChange, icon }) => {
           onChange={onChange}
         />
 
-        <div className="flex h-12 w-20 shrink-0 items-center justify-center overflow-hidden bg-purple-50 text-purple-600">
+        <div className="flex h-12 w-20 shrink-0 items-center justify-center overflow-hidden bg-blue-50 text-blue-600">
           {preview ? (
             <img
               src={preview}
@@ -523,7 +523,7 @@ const FileUpload = ({ label, description, preview, onChange, icon }) => {
         </div>
 
         <div>
-          <div className="flex items-center gap-1.5 text-sm font-medium text-gray-700 group-hover:text-purple-600">
+          <div className="flex items-center gap-1.5 text-sm font-medium text-gray-700 group-hover:text-blue-600">
             <Upload size={15} />
             Click to upload
           </div>

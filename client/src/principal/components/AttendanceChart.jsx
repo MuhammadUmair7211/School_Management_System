@@ -28,7 +28,7 @@ export default function AttendanceChart() {
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-slate-600">Attendance Overview</h2>
 
-        <select className="max-w-72 w-full border border-slate-300 rounded-xl px-3 py-1.5">
+        <select className="max-w-72 w-full border border-slate-300 p-2 text-sm">
           <option>This Month</option>
           <option>Last Month</option>
           <option>This Year</option>
@@ -42,30 +42,95 @@ export default function AttendanceChart() {
         <p className="font-semibold text-slate-500">Teachers</p>
       </div>
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
-          <YAxis domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
-          <Tooltip />
+        <LineChart
+          data={data}
+          margin={{
+            top: 10,
+            right: 10,
+            left: -15,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid
+            strokeDasharray="3 3"
+            vertical={true}
+            stroke="#e2e8f0"
+          />
+
+          <XAxis
+            dataKey="day"
+            axisLine={true}
+            tickLine={true}
+            tick={{
+              fontSize: 12,
+              fill: "#94a3b8",
+            }}
+            dy={10}
+          />
+
+          <YAxis
+            domain={[0, 100]}
+            axisLine={true}
+            tickLine={true}
+            tickFormatter={(value) => `${value}%`}
+            tick={{
+              fontSize: 12,
+              fill: "#94a3b8",
+            }}
+          />
+
+          <Tooltip
+            contentStyle={{
+              borderRadius: "12px",
+              border: "1px solid #e2e8f0",
+              boxShadow: "0 10px 25px rgba(15, 23, 42, 0.08)",
+              padding: "10px 12px",
+            }}
+            labelStyle={{
+              color: "#475569",
+              fontWeight: 600,
+              marginBottom: "4px",
+            }}
+            formatter={(value, name) => [`${value}%`, name]}
+          />
+
           <Line
             type="monotone"
             dataKey="students"
+            name="Students"
             stroke="#2563eb"
             strokeWidth={3}
-            dot={{ r: 4 }}
+            dot={{
+              r: 3,
+              strokeWidth: 2,
+              fill: "#ffffff",
+            }}
+            activeDot={{
+              r: 6,
+              strokeWidth: 3,
+            }}
           />
 
           <Line
             type="monotone"
             dataKey="teachers"
-            stroke="#16a34a"
+            name="Teachers"
+            stroke="#10b981"
             strokeWidth={3}
-            dot={{ r: 4 }}
+            dot={{
+              r: 3,
+              strokeWidth: 2,
+              fill: "#ffffff",
+            }}
+            activeDot={{
+              r: 6,
+              strokeWidth: 3,
+            }}
           />
         </LineChart>
       </ResponsiveContainer>
 
-      <div className="grid md:grid-cols-2 gap-4 mt-2">
+      <div className="grid md:grid-cols-2 gap-2 mt-2">
         <div className="border border-slate-100 rounded-xl p-3">
           <h4 className="text-gray-500">Average Student Attendance</h4>
           <h2 className="text-3xl font-bold text-blue-600">92.4%</h2>
