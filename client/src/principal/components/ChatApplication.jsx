@@ -5,125 +5,54 @@ import {
   FileText,
   Image,
   Info,
-  MoreVertical,
+  MessageSquare,
   Paperclip,
-  Phone,
   Search,
   Send,
   Smile,
-  Video,
+  UserRound,
 } from "lucide-react";
 import { useState } from "react";
-
+import { useSelector } from "react-redux";
 const ChatApplication = () => {
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [message, setMessage] = useState("");
-
-  const conversations = [
-    {
-      id: 1,
-      name: "Sarah Ahmed",
-      role: "Mathematics Teacher",
-      avatar: "https://i.pravatar.cc/100?img=47",
-      lastMessage: "I have uploaded the exam results.",
-      time: "10:30 AM",
-      unread: 2,
-      online: true,
-    },
-    {
-      id: 2,
-      name: "Ahmed Khan",
-      role: "Science Teacher",
-      avatar: "https://i.pravatar.cc/100?img=12",
-      lastMessage: "Please review the examination schedule.",
-      time: "Yesterday",
-      unread: 0,
-      online: true,
-    },
-    {
-      id: 3,
-      name: "Ayesha Malik",
-      role: "English Teacher",
-      avatar: "https://i.pravatar.cc/100?img=32",
-      lastMessage: "Can you please share the meeting notes?",
-      time: "Yesterday",
-      unread: 1,
-      online: false,
-    },
-    {
-      id: 4,
-      name: "Bilal Hussain",
-      role: "Computer Science Teacher",
-      avatar: "https://i.pravatar.cc/100?img=11",
-      lastMessage: "Regarding the computer lab schedule.",
-      time: "May 30",
-      unread: 0,
-      online: false,
-    },
-    {
-      id: 5,
-      name: "Sara Noor",
-      role: "Class Teacher - 8A",
-      avatar: "https://i.pravatar.cc/100?img=44",
-      lastMessage: "Attendance report has been submitted.",
-      time: "May 29",
-      unread: 3,
-      online: true,
-    },
-    {
-      id: 6,
-      name: "Usman Tariq",
-      role: "Physical Education",
-      avatar: "https://i.pravatar.cc/100?img=13",
-      lastMessage: "Sports day arrangements are ready.",
-      time: "May 28",
-      unread: 0,
-      online: false,
-    },
-  ];
-
-  const activeConversation =
-    conversations.find(
-      (conversation) => conversation.id === selectedConversation,
-    ) || conversations[0];
-
-  const messages = [
-    {
-      id: 1,
-      sender: "them",
-      text: "Assalamualaikum Sir, I have completed the Mathematics exam results.",
-      time: "10:25 AM",
-    },
-    {
-      id: 2,
-      sender: "me",
-      text: "Walaikumsalam Sarah. Great! Please upload the final results to the system.",
-      time: "10:26 AM",
-      read: true,
-    },
-    {
-      id: 3,
-      sender: "them",
-      text: "Sure Sir. I have uploaded the file. Please review it when you get a chance.",
-      time: "10:27 AM",
-    },
-    {
-      id: 4,
-      sender: "me",
-      text: "Thank you. I will review the results shortly.",
-      time: "10:28 AM",
-      read: true,
-    },
-  ];
+  const [chatSearch, setChatSearch] = useState("");
+  const { conversations } = useSelector((state) => state.messages);
+  const { teachers } = useSelector((state) => state.teachers);
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
     console.log("Sending:", message);
     setMessage("");
   };
+  const selectedTeacherDetails = teachers.find(
+    (teacher) => teacher._id === selectedConversation?.teacherId,
+  );
+  const teacherConversations = conversations.filter(
+    (conversation) =>
+      conversation.teacherId === selectedConversation?.teacherId,
+  );
+
+  const teacherDetails = { ...selectedTeacherDetails, teacherConversations };
+  const conversation = teacherDetails?.teacherConversations?.[0];
+  const firstMessage = conversation?.messages?.[0];
+  const allImages =
+    teacherDetails?.teacherConversations
+      ?.flatMap((conversation) => conversation.messages || [])
+      .filter((message) => message.image)
+      .map((message) => message.image) || [];
+
+  const allDocuments =
+    teacherDetails?.teacherConversations
+      ?.flatMap((conversation) => conversation.messages || [])
+      .filter((message) => message.document)
+      .map((message) => message.document) || [];
+  const docsAndImageArray = [...allImages, ...allDocuments];
+  console.log(docsAndImageArray);
 
   return (
-    <div className="mt-2 flex h-full min-h-0 flex-col overflow-hidden">
+    <div className="mt-1 flex h-[85vh] min-h-0 flex-col overflow-hidden">
       {/* Main Chat Area */}
       <div className="flex min-h-0 flex-1 gap-2">
         {/* Conversations */}
@@ -142,6 +71,8 @@ const ChatApplication = () => {
 
               <input
                 type="text"
+                value={chatSearch}
+                onChange={(e) => setChatSearch(e.target.value)}
                 placeholder="Search conversations..."
                 className="w-full border border-slate-200 pl-10 p-3 text-sm outline-none transition "
               />
@@ -150,322 +81,591 @@ const ChatApplication = () => {
 
           {/* Conversation List */}
           <div className="min-h-0 flex-1 overflow-y-auto">
-            {conversations.map((conversation) => (
-              <button
-                key={conversation.id}
-                onClick={() => setSelectedConversation(conversation.id)}
-                className={`flex w-full items-center gap-3 border-b border-slate-100 p-3 text-left transition ${
-                  activeConversation.id === conversation.id
-                    ? "bg-blue-50"
-                    : "hover:bg-slate-50"
-                }`}
-              >
-                {/* Avatar */}
-                <div className="relative shrink-0">
-                  <img
-                    src={conversation.avatar}
-                    alt={conversation.name}
-                    className="h-11 w-11 rounded-full object-cover"
-                  />
+            {conversations.map((conversation) => {
+              const teacher = teachers.find(
+                (teacher) => teacher._id === conversation.teacherId,
+              );
+              const lastMessage =
+                conversation.messages[conversation.messages?.length - 1];
+              const unreadMessages = conversation.messages?.filter(
+                (message) => message.isRead === false,
+              ).length;
 
-                  {conversation.online && (
-                    <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
-                  )}
-                </div>
+              return (
+                <button
+                  key={conversation._id}
+                  onClick={() => setSelectedConversation(conversation)}
+                  className={`flex w-full items-center gap-3 border-b border-slate-100 p-3 cursor-pointer text-left transition ${
+                    selectedConversation?._id === conversation._id
+                      ? "bg-blue-50"
+                      : "hover:bg-slate-50"
+                  }`}
+                >
+                  {/* Avatar */}
+                  <div className="relative shrink-0">
+                    <img
+                      src={teacher?.profileImage}
+                      alt={teacher.firstName + teacher.lastName}
+                      className="h-11 w-11 rounded-full object-cover"
+                    />
 
-                {/* Content */}
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="truncate text-sm font-semibold text-slate-800">
-                      {conversation.name}
-                    </h3>
-
-                    <span className="shrink-0 text-[10px] text-slate-400">
-                      {conversation.time}
-                    </span>
-                  </div>
-
-                  <div className="mt-1 flex items-center justify-between gap-2">
-                    <p className="truncate text-xs text-slate-400">
-                      {conversation.lastMessage}
-                    </p>
-
-                    {conversation.unread > 0 && (
-                      <span className="flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-blue-600 px-1.5 text-[10px] font-bold text-white">
-                        {conversation.unread}
-                      </span>
+                    {teacher.isOnline && (
+                      <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
                     )}
                   </div>
-                </div>
-              </button>
-            ))}
+
+                  {/* Content */}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="truncate text-sm font-semibold text-slate-800">
+                        {teacher.firstName + " " + teacher.lastName}
+                      </h3>
+
+                      <span className="shrink-0 text-[10px] text-slate-400">
+                        {new Date(lastMessage.createdAt).toDateString()}
+                      </span>
+                    </div>
+
+                    <div className="mt-1 flex items-center justify-between gap-2">
+                      <p className="truncate text-xs text-slate-400">
+                        {lastMessage.text}
+                      </p>
+
+                      {unreadMessages > 0 && (
+                        <span className="flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-blue-600 px-1.5 text-[10px] font-bold text-white">
+                          {unreadMessages}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </aside>
 
         {/* Chat Window */}
-        <section
-          className={`${
-            selectedConversation ? "flex" : "hidden lg:flex"
-          } min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 shadow-sm`}
-        >
-          {/* Chat Header */}
-          <div className="flex shrink-0 items-center justify-between border-b border-slate-100 p-3">
-            <div className="flex min-w-0 items-center gap-3">
-              {/* Mobile Back */}
-              <button
-                onClick={() => setSelectedConversation(null)}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden"
-              >
-                <ArrowLeft size={19} />
-              </button>
-
-              <div className="relative shrink-0">
-                <img
-                  src={activeConversation.avatar}
-                  alt={activeConversation.name}
-                  className="h-10 w-10 rounded-full object-cover"
-                />
-
-                {activeConversation.online && (
-                  <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
-                )}
-              </div>
-
-              <div className="min-w-0">
-                <h2 className="truncate text-sm font-bold text-slate-800">
-                  {activeConversation.name}
-                </h2>
-
-                <p className="truncate text-xs text-slate-400">
-                  {activeConversation.online
-                    ? "Online"
-                    : activeConversation.role}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1">
-              <button className="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 sm:flex">
-                <Phone size={17} />
-              </button>
-
-              <button className="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 sm:flex">
-                <Video size={18} />
-              </button>
-
-              <button className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100">
-                <MoreVertical size={18} />
-              </button>
-            </div>
-          </div>
-
-          {/* Messages */}
-          <div className="min-h-0 flex-1 overflow-y-auto bg-slate-50/50 p-4 md:p-6">
-            {/* Date */}
-            <div className="mb-6 flex items-center gap-3">
-              <div className="h-px flex-1 bg-slate-200" />
-
-              <span className="flex items-center gap-1.5 text-[10px] font-semibold text-slate-400">
-                <Calendar size={12} />
-                May 31, 2024
-              </span>
-
-              <div className="h-px flex-1 bg-slate-200" />
-            </div>
-
-            <div className="space-y-4">
-              {messages.map((item) => (
-                <div
-                  key={item.id}
-                  className={`flex ${
-                    item.sender === "me" ? "justify-end" : "justify-start"
-                  }`}
+        {selectedConversation ? (
+          <section className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+            {/* Chat Header */}
+            <div className="flex shrink-0 items-center justify-between border-b border-slate-100 bg-white p-2">
+              <div className="flex min-w-0 items-center gap-2">
+                {/* Mobile Back */}
+                <button
+                  onClick={() => setSelectedConversation(null)}
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden"
                 >
-                  <div
-                    className={`max-w-[80%] md:max-w-[65%] ${
-                      item.sender === "me"
-                        ? "rounded-2xl rounded-br-md bg-blue-600 text-white"
-                        : "rounded-2xl rounded-bl-md border border-slate-200 bg-white text-slate-700"
-                    } px-4 py-3 shadow-sm`}
-                  >
-                    <p className="text-sm leading-5">{item.text}</p>
+                  <ArrowLeft size={19} />
+                </button>
 
-                    <div
-                      className={`mt-1.5 flex items-center justify-end gap-1 text-[10px] ${
-                        item.sender === "me"
-                          ? "text-blue-100"
-                          : "text-slate-400"
-                      }`}
-                    >
-                      <span>{item.time}</span>
+                {/* Profile Image */}
+                <div className="relative shrink-0">
+                  <img
+                    src={teacherDetails?.profileImage || "/default-avatar.png"}
+                    alt={`${teacherDetails?.firstName || ""} ${
+                      teacherDetails?.lastName || ""
+                    }`}
+                    className="h-10 w-10 rounded-full object-cover"
+                  />
 
-                      {item.sender === "me" && <CheckCheck size={13} />}
-                    </div>
-                  </div>
+                  {teacherDetails?.isOnline && (
+                    <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
+                  )}
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Composer */}
-          <div className="shrink-0 border-t border-slate-100 bg-white p-3">
-            <div className="flex items-end gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2 focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-500/10">
-              <div className="flex items-center gap-1">
-                <button className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600">
-                  <Smile size={18} />
-                </button>
+                {/* Teacher Details */}
+                <div className="min-w-0">
+                  <h2 className="truncate text-sm font-bold text-slate-800">
+                    {teacherDetails?.firstName} {teacherDetails?.lastName}
+                  </h2>
 
-                <button className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600">
-                  <Paperclip size={18} />
-                </button>
-
-                <button className="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600 sm:flex">
-                  <Image size={18} />
-                </button>
+                  <p className="text-xs text-slate-400">
+                    {teacherDetails?.isOnline ? "Online" : "Offline"}
+                  </p>
+                </div>
               </div>
-
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    handleSendMessage();
-                  }
-                }}
-                rows={1}
-                placeholder="Type a message..."
-                className="max-h-24 min-h-9 flex-1 resize-none bg-transparent px-2 py-2 text-sm text-slate-700 outline-none placeholder:text-slate-400"
-              />
-
-              <button
-                onClick={handleSendMessage}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white transition hover:bg-blue-700"
-              >
-                <Send size={16} />
-              </button>
             </div>
 
-            <p className="mt-1.5 hidden text-[10px] text-slate-400 sm:block">
-              Press Enter to send · Shift + Enter for a new line
-            </p>
-          </div>
-        </section>
+            {/* Messages */}
+            <div className="min-h-0 flex-1 overflow-y-auto bg-slate-50/50 p-4">
+              {conversations.length > 0 ? (
+                <>
+                  {/* Conversation Start Date */}
+                  {firstMessage?.createdAt && (
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="h-px flex-1 bg-slate-200" />
 
-        {/* Contact Info */}
-        <aside className="hidden lg:w-80 xl:w-96 shrink-0 flex-col gap-2 xl:flex">
-          {/* Contact Card */}
-          <div className="rounded-xl border border-slate-200 p-4 shadow-sm">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-slate-800">Contact Info</h3>
+                      <span className="flex shrink-0 items-center gap-1.5 text-[10px] font-semibold text-slate-400">
+                        <Calendar size={12} />
 
-              <button className="text-slate-400 hover:text-slate-600">
-                <MoreVertical size={17} />
-              </button>
-            </div>
+                        {new Date(firstMessage.createdAt).toLocaleDateString(
+                          "en-US",
+                          {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          },
+                        )}
+                      </span>
 
-            <div className="text-center">
-              <div className="relative mx-auto mb-3 w-fit">
-                <img
-                  src={activeConversation.avatar}
-                  alt={activeConversation.name}
-                  className="h-20 w-20 rounded-full object-cover ring-4 ring-blue-50"
-                />
+                      <div className="h-px flex-1 bg-slate-200" />
+                    </div>
+                  )}
 
-                {activeConversation.online && (
-                  <span className="absolute bottom-1 right-1 h-4 w-4 rounded-full border-2 border-white bg-emerald-500" />
-                )}
-              </div>
+                  {/* Messages */}
+                  <div className="h-full space-y-2">
+                    {conversations.length > 0 ? (
+                      conversations.map((conversation) => {
+                        const isTeacher =
+                          conversation.teacherId ===
+                          selectedTeacherDetails?._id;
 
-              <h3 className="text-sm font-bold text-slate-800">
-                {activeConversation.name}
-              </h3>
+                        return (
+                          <div key={conversation._id} className="space-y-2">
+                            {conversation.messages?.map((message) => (
+                              <div
+                                key={message._id}
+                                className={`flex ${
+                                  isTeacher ? "justify-start" : "justify-end"
+                                }`}
+                              >
+                                <div
+                                  className={`max-w-[80%] px-4 py-3 shadow-sm md:max-w-[65%] ${
+                                    isTeacher
+                                      ? "rounded-2xl rounded-bl-md border border-slate-200 bg-white text-slate-700"
+                                      : "rounded-2xl rounded-br-md bg-blue-600 text-white"
+                                  }`}
+                                >
+                                  {/* Message Text */}
+                                  <p className="text-sm leading-5">
+                                    {message.text}
+                                  </p>
 
-              <p className="mt-1 text-xs text-slate-400">
-                {activeConversation.role}
-              </p>
+                                  {/* Message Time */}
+                                  <div
+                                    className={`mt-1.5 flex items-center justify-end gap-1 text-[10px] ${
+                                      isTeacher
+                                        ? "text-slate-400"
+                                        : "text-blue-100"
+                                    }`}
+                                  >
+                                    <span>
+                                      {message.createdAt
+                                        ? new Date(
+                                            message.createdAt,
+                                          ).toLocaleTimeString("en-US", {
+                                            hour: "numeric",
+                                            minute: "2-digit",
+                                          })
+                                        : ""}
+                                    </span>
 
-              {activeConversation.online && (
-                <span className="mt-2 inline-flex rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-semibold text-emerald-600">
-                  ● Online
-                </span>
+                                    {!isTeacher && <CheckCheck size={13} />}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="flex h-full items-center justify-center">
+                        <p className="text-sm text-slate-400">
+                          No messages yet.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : (
+                /* No Messages */
+                <div className="flex h-full flex-col items-center justify-center text-center">
+                  <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
+                    <MessageSquare size={24} className="text-slate-400" />
+                  </div>
+
+                  <h3 className="text-sm font-semibold text-slate-700">
+                    No messages yet
+                  </h3>
+
+                  <p className="mt-1 max-w-xs text-xs text-slate-400">
+                    Start the conversation by sending a message below.
+                  </p>
+                </div>
               )}
             </div>
 
-            <div className="mt-5 grid grid-cols-2 gap-2">
-              <button className="flex flex-col items-center gap-1.5 rounded-xl bg-blue-50 py-3 text-blue-600 transition hover:bg-blue-100">
-                <Phone size={17} />
-                <span className="text-[10px] font-semibold">Call</span>
-              </button>
+            {/* Composer */}
+            <div className="shrink-0 border-t border-slate-100 bg-white p-3">
+              <div className="flex items-end gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2 focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-500/10">
+                {/* Actions */}
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    className="flex p-2 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600 cursor-pointer"
+                  >
+                    <Smile size={18} />
+                  </button>
 
-              <button className="flex flex-col items-center gap-1.5 rounded-xl bg-violet-50 py-3 text-violet-600 transition hover:bg-violet-100">
-                <Video size={17} />
-                <span className="text-[10px] font-semibold">Video</span>
-              </button>
-            </div>
-          </div>
+                  <button
+                    type="button"
+                    className="flex p-2 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600 cursor-pointer"
+                  >
+                    <Paperclip size={18} />
+                  </button>
 
-          {/* Shared Media */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-slate-800">Shared Files</h3>
+                  <button
+                    type="button"
+                    className="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600 sm:flex cursor-pointer"
+                  >
+                    <Image size={18} />
+                  </button>
+                </div>
 
-              <button className="text-xs font-semibold text-blue-600 hover:text-blue-700">
-                View All
-              </button>
-            </div>
+                {/* Message Input */}
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSendMessage();
+                    }
+                  }}
+                  rows={1}
+                  placeholder="Type a message..."
+                  className="max-h-24 min-h-9 flex-1 resize-none bg-transparent p-2 text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                />
 
-            <div className="grid grid-cols-3 gap-2">
-              <div className="flex h-16 items-center justify-center rounded-lg bg-red-50 text-red-500">
-                <FileText size={22} />
-              </div>
-
-              <div className="flex h-16 items-center justify-center rounded-lg bg-blue-50 text-blue-500">
-                <FileText size={22} />
-              </div>
-
-              <div className="flex h-16 items-center justify-center rounded-lg bg-emerald-50 text-emerald-500">
-                <Image size={22} />
-              </div>
-            </div>
-          </div>
-
-          {/* About */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <div className="mb-4 flex items-center gap-2">
-              <Info size={16} className="text-slate-400" />
-
-              <h3 className="text-sm font-bold text-slate-800">About</h3>
-            </div>
-
-            <div className="space-y-3">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
-                  Email
-                </p>
-
-                <p className="mt-1 text-xs text-slate-600">
-                  sarah.ahmed@school.com
-                </p>
-              </div>
-
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
-                  Phone
-                </p>
-
-                <p className="mt-1 text-xs text-slate-600">+92 300 1234567</p>
-              </div>
-
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
-                  Department
-                </p>
-
-                <p className="mt-1 text-xs text-slate-600">Mathematics</p>
+                {/* Send */}
+                <button
+                  type="button"
+                  onClick={handleSendMessage}
+                  disabled={!message.trim()}
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <Send size={16} />
+                </button>
               </div>
             </div>
-          </div>
+          </section>
+        ) : (
+          /* No Conversation Selected */
+          <section className="hidden min-w-0 flex-1 items-center justify-center rounded-xl border border-slate-200 bg-slate-50/50 shadow-sm lg:flex">
+            <div className="flex max-w-sm flex-col items-center px-6 text-center">
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50">
+                <MessageSquare size={28} className="text-blue-500" />
+              </div>
+
+              <h2 className="text-base font-bold text-slate-800">
+                Select a conversation
+              </h2>
+
+              <p className="mt-1 text-sm text-slate-400">
+                Choose a teacher from the conversation list to view your
+                messages.
+              </p>
+            </div>
+          </section>
+        )}
+
+        {/* Contact Info Sidebar */}
+        <aside className="hidden w-80 shrink-0 flex-col gap-2 overflow-y-auto xl:flex xl:w-80 2xl:w-96">
+          {selectedTeacherDetails ? (
+            <>
+              {/* Profile Card */}
+              <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                {/* Profile Cover */}
+                <div className="relative h-20 bg-linear-to-br from-blue-500 via-blue-600 to-indigo-700">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_40%)]" />
+                </div>
+
+                {/* Profile Content */}
+                <div className="relative px-5 pb-5">
+                  {/* Avatar */}
+                  <div className="-mt-10 mb-3 flex justify-center">
+                    <div className="relative">
+                      <img
+                        src={
+                          selectedTeacherDetails?.profileImage ||
+                          "/default-avatar.png"
+                        }
+                        alt={`${selectedTeacherDetails?.firstName || ""} ${
+                          selectedTeacherDetails?.lastName || ""
+                        }`}
+                        className="h-20 w-20 rounded-full border-4 border-white object-cover shadow-md"
+                      />
+
+                      {selectedTeacherDetails?.isOnline && (
+                        <span className="absolute bottom-1 right-1 h-4 w-4 rounded-full border-2 border-white bg-emerald-500" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Name */}
+                  <div className="text-center">
+                    <h3 className="text-base font-bold text-slate-800">
+                      {selectedTeacherDetails?.firstName}{" "}
+                      {selectedTeacherDetails?.lastName}
+                    </h3>
+
+                    <p className="mt-0.5 text-xs text-slate-500">
+                      {selectedTeacherDetails?.designation || "Teacher"}
+                    </p>
+
+                    <div className="mt-2 flex items-center justify-center gap-2">
+                      <span
+                        className={`h-1.5 w-1.5 rounded-full ${
+                          selectedTeacherDetails?.isOnline
+                            ? "bg-emerald-500"
+                            : "bg-slate-300"
+                        }`}
+                      />
+
+                      <span
+                        className={`text-[11px] font-medium ${
+                          selectedTeacherDetails?.isOnline
+                            ? "text-emerald-600"
+                            : "text-slate-400"
+                        }`}
+                      >
+                        {selectedTeacherDetails?.isOnline
+                          ? "Online"
+                          : "Offline"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Shared Files */}
+              <div className="rounded-xl border border-slate-200 p-2 shadow-sm">
+                <div className="mb-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-800">
+                      Shared Files
+                    </h3>
+
+                    <p className="mt-0.5 text-[10px] text-slate-400">
+                      Documents shared in this chat
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="text-[11px] font-semibold text-blue-600 transition hover:text-blue-700"
+                  >
+                    View All
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  {docsAndImageArray?.length > 0 ? (
+                    docsAndImageArray.map((item, index) => (
+                      <div key={index} className="space-y-2">
+                        {/* Image */}
+                        {item.image && (
+                          <a
+                            href={item.image}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block overflow-hidden rounded-xl"
+                          >
+                            <img
+                              src={item.image}
+                              alt="Shared"
+                              className="h-24 w-full rounded-xl object-cover"
+                            />
+                          </a>
+                        )}
+
+                        {/* Document */}
+                        {item.document && (
+                          <a
+                            href={item.document}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 rounded-xl border border-slate-200 p-3 transition hover:bg-slate-50"
+                          >
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50 text-red-500">
+                              <FileText size={20} />
+                            </div>
+
+                            <div className="min-w-0">
+                              <p className="truncate text-xs font-semibold text-slate-700">
+                                Shared Document
+                              </p>
+
+                              <p className="text-[10px] text-slate-400">
+                                Click to open
+                              </p>
+                            </div>
+                          </a>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    <div className="flex flex-col items-center justify-center py-6 text-center">
+                      <FileText size={24} className="mb-2 text-slate-300" />
+
+                      <p className="text-xs font-medium text-slate-500">
+                        No Media Shared
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* About Teacher */}
+              <div className="rounded-xl border border-slate-200 p-4 shadow-sm">
+                {/* Header */}
+                <div className="mb-4 flex items-center gap-2">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100">
+                    <Info size={15} className="text-slate-500" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-800">
+                      About Teacher
+                    </h3>
+
+                    <p className="text-[10px] text-slate-400">
+                      Professional information
+                    </p>
+                  </div>
+                </div>
+
+                {/* Details */}
+                <div className="grid grid-cols-3 divide-y divide-slate-100">
+                  {/* Email */}
+                  <div className="py-3 first:pt-0">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Email
+                    </p>
+
+                    <p className="break-all text-xs font-medium text-slate-700">
+                      {selectedTeacherDetails?.email || "Not provided"}
+                    </p>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="py-3">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Phone
+                    </p>
+
+                    <p className="text-xs font-medium text-slate-700">
+                      {selectedTeacherDetails?.phone || "Not provided"}
+                    </p>
+                  </div>
+
+                  {/* Address */}
+                  <div className="py-3">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Address
+                    </p>
+
+                    <p className="text-xs font-medium leading-5 text-slate-700">
+                      {selectedTeacherDetails?.address || "Not provided"}
+                    </p>
+                  </div>
+
+                  {/* Qualification */}
+                  <div className="py-3">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Qualification
+                    </p>
+
+                    <p className="text-xs font-medium text-slate-700">
+                      {selectedTeacherDetails?.qualification || "Not provided"}
+                    </p>
+                  </div>
+
+                  {/* Experience */}
+                  <div className="py-3">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Experience
+                    </p>
+
+                    <p className="text-xs font-medium text-slate-700">
+                      {selectedTeacherDetails?.experience
+                        ? `${selectedTeacherDetails.experience} years`
+                        : "Not provided"}
+                    </p>
+                  </div>
+
+                  {/* Designation */}
+                  <div className="py-3">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Designation
+                    </p>
+
+                    <p className="text-xs font-medium text-slate-700">
+                      {selectedTeacherDetails?.designation || "Not provided"}
+                    </p>
+                  </div>
+
+                  {/* Department */}
+                  <div className="py-3">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Department
+                    </p>
+
+                    <p className="text-xs font-medium text-slate-700">
+                      {selectedTeacherDetails?.department || "Not provided"}
+                    </p>
+                  </div>
+
+                  {/* Salary */}
+                  <div className="py-3">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Salary
+                    </p>
+
+                    <p className="text-xs font-medium text-slate-700">
+                      {selectedTeacherDetails?.salary
+                        ? `Rs ${selectedTeacherDetails.salary.toLocaleString()}`
+                        : "Not provided"}
+                    </p>
+                  </div>
+
+                  {/* Joining Date */}
+                  <div className="py-3 last:pb-0">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      Joined School
+                    </p>
+
+                    <p className="text-xs font-medium text-slate-700">
+                      {selectedTeacherDetails?.joiningDate
+                        ? new Date(
+                            selectedTeacherDetails.joiningDate,
+                          ).toLocaleDateString("en-US", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })
+                        : "Not provided"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            /* No Teacher Selected */
+            <div className="flex min-h-100 flex-1 flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
+                <UserRound size={24} className="text-slate-400" />
+              </div>
+
+              <h3 className="text-sm font-bold text-slate-700">
+                No Contact Selected
+              </h3>
+
+              <p className="mt-1 max-w-xs text-xs leading-5 text-slate-400">
+                Select a teacher from your conversations to view their contact
+                information.
+              </p>
+            </div>
+          )}
         </aside>
       </div>
     </div>

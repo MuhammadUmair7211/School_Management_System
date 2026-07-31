@@ -4,67 +4,48 @@ const initialState = {
   teachers: [
     {
       _id: 1,
-
-      // Employee Information
       employeeId: "EMP001",
-      joiningDate: "2025-01-10",
-
-      // Personal Information
+      createdAt: "2025-01-10",
       firstName: "Ahmed",
       lastName: "Khan",
       gender: "Male",
       dateOfBirth: "1990-05-15",
       qualification: "M.Sc Mathematics",
       experience: "8 Years",
-
-      // Contact Information
       email: "ahmed.khan@school.com",
       phone: "03001234567",
       address: "Peshawar",
-
-      // Professional Information
       designation: "Mathematics Teacher",
       department: "Science",
       classTeacherOf: 1,
       subject: "Mathematics",
-
-      // Salary
       salary: 70000,
-
-      // Profile
-      profileImage: "",
-
-      // Status
+      profileImage: "https://i.pravatar.cc/100?img=47",
       status: "Active",
+      isOnline: false,
     },
 
     {
       _id: 2,
-
       employeeId: "EMP002",
       joiningDate: "2024-08-05",
-
       firstName: "Ayesha",
       lastName: "Ali",
       gender: "Female",
       dateOfBirth: "1992-09-22",
       qualification: "M.A English",
       experience: "6 Years",
-
       email: "ayesha.ali@school.com",
       phone: "03019876543",
       address: "Islamabad",
-
       designation: "English Teacher",
       department: "Languages",
       classTeacherOf: 2,
       subject: "English",
-
       salary: 65000,
-
-      profileImage: "",
-
+      profileImage: "https://i.pravatar.cc/100?img=12",
       status: "Active",
+      isOnline: true,
     },
 
     {
@@ -88,12 +69,10 @@ const initialState = {
       department: "Science",
       classTeacherOf: 3,
       subject: "Physics",
-
       salary: 75000,
-
-      profileImage: "",
-
+      profileImage: "https://i.pravatar.cc/100?img=32",
       status: "Active",
+      isOnline: true,
     },
 
     {
@@ -120,38 +99,33 @@ const initialState = {
 
       salary: 60000,
 
-      profileImage: "",
+      profileImage: "https://i.pravatar.cc/100?img=11",
 
       status: "Active",
+      isOnline: false,
     },
 
     {
       _id: 5,
-
       employeeId: "EMP005",
       joiningDate: "2021-06-20",
-
       firstName: "Usman",
       lastName: "Iqbal",
       gender: "Male",
       dateOfBirth: "1987-07-28",
       qualification: "M.Sc Computer Science",
       experience: "12 Years",
-
       email: "usman.iqbal@school.com",
       phone: "03331234567",
       address: "Swabi",
-
       designation: "Computer Science Teacher",
       department: "Computer Science",
       classTeacherOf: 5,
       subject: "Computer Science",
-
       salary: 80000,
-
-      profileImage: "",
-
+      profileImage: "https://i.pravatar.cc/100?img=44",
       status: "Active",
+      isOnline: true,
     },
   ],
   loading: false,

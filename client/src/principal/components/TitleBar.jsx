@@ -54,7 +54,7 @@ const TitleBar = () => {
             <input
               type="text"
               placeholder="Search students, teachers, classes..."
-              className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-11 pr-20 text-sm font-medium text-slate-700 outline-none transition-all duration-200 placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+              className="h-11 w-full rounded-full border border-slate-200 bg-slate-50/70 pl-11 pr-20 text-sm font-medium text-slate-700 outline-none transition-all duration-200 "
             />
           </div>
         </div>
