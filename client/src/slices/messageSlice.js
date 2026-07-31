@@ -9,7 +9,7 @@ const initialState = {
       messages: [
         {
           _id: 1,
-          senderId: 1,
+          sentBy: "teacher",
           image: "",
           document: "",
           text: "Sir, I have completed the attendance.",
@@ -18,7 +18,7 @@ const initialState = {
         },
         {
           _id: 2,
-          senderId: 1,
+          sentBy: "principal",
           image: "",
           document: "",
           text: "Good. Please submit the report.",
@@ -27,7 +27,7 @@ const initialState = {
         },
         {
           _id: 3,
-          senderId: 1,
+          sentBy: "teacher",
           image: "",
           document: "",
           text: "Sure, sir.",
@@ -44,7 +44,7 @@ const initialState = {
       messages: [
         {
           _id: 4,
-          senderId: 2,
+          sentBy: "teacher",
           image: "",
           document: "",
           text: "Sir, I wanted to discuss the upcoming examination schedule.",
@@ -53,7 +53,7 @@ const initialState = {
         },
         {
           _id: 5,
-          senderId: 1,
+          sentBy: "principal",
           image: "",
           document: "",
           text: "Sure. Please come to my office after lunch.",
@@ -70,7 +70,7 @@ const initialState = {
       messages: [
         {
           _id: 6,
-          senderId: 3,
+          sentBy: "teacher",
           image: "",
           document: "",
           text: "Sir, I have attached the monthly performance report.",
@@ -79,7 +79,7 @@ const initialState = {
         },
         {
           _id: 7,
-          senderId: 1,
+          sentBy: "principal",
           image: "",
           document: "",
           text: "Thank you. The report looks good.",
@@ -96,7 +96,7 @@ const initialState = {
       messages: [
         {
           _id: 8,
-          senderId: 1,
+          sentBy: "principal",
           image: "",
           document: "",
           text: "Please submit the class progress report by tomorrow.",
@@ -105,7 +105,7 @@ const initialState = {
         },
         {
           _id: 9,
-          senderId: 4,
+          sentBy: "teacher",
           image: "",
           document: "",
           text: "Okay sir, I will submit it tomorrow morning.",
@@ -122,7 +122,7 @@ const initialState = {
       messages: [
         {
           _id: 10,
-          senderId: 5,
+          sentBy: "teacher",
           image: "",
           document: "",
           text: "Sir, there is a problem with the computer lab.",
@@ -131,7 +131,7 @@ const initialState = {
         },
         {
           _id: 11,
-          senderId: 1,
+          sentBy: "principal",
           image: "",
           document: "",
           text: "What seems to be the problem?",
@@ -159,9 +159,12 @@ const messageSlice = createSlice({
         conversation.messages.push(message);
       }
     },
+    startNewChat: (state, action) => {
+      state.conversations.push(action.payload);
+    },
     MarkAsRead: (state, action) => {
       const conversation = state.conversations.find(
-        (conversation) => conversation._id === action.payload,
+        (conversation) => conversation._id === action.payload._id,
       );
       if (conversation) {
         conversation.messages.forEach((message) => {
@@ -172,5 +175,5 @@ const messageSlice = createSlice({
   },
 });
 
-export const { AddMessage, MarkAsRead } = messageSlice.actions;
+export const { AddMessage, MarkAsRead, startNewChat } = messageSlice.actions;
 export default messageSlice.reducer;

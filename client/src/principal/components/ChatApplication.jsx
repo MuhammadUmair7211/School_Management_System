@@ -1,35 +1,55 @@
 import {
   ArrowLeft,
   Calendar,
+  Check,
   CheckCheck,
   FileText,
-  Image,
+  ImageIcon,
   Info,
   MessageSquare,
   Paperclip,
   Search,
   Send,
-  Smile,
+  SendIcon,
+  User,
   UserRound,
+  X,
 } from "lucide-react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-const ChatApplication = () => {
+import { useDispatch, useSelector } from "react-redux";
+import {
+  AddMessage,
+  MarkAsRead,
+  startNewChat,
+} from "../../slices/messageSlice";
+const ChatApplication = ({ openNewMessageBox, setOpenNewMessageBox }) => {
+  const dispatch = useDispatch();
   const [selectedConversation, setSelectedConversation] = useState(null);
+  const [selectedTeacher, setSelectedTeacher] = useState("");
   const [message, setMessage] = useState("");
+  const [newMessage, setNewMessage] = useState("");
   const [chatSearch, setChatSearch] = useState("");
   const { conversations } = useSelector((state) => state.messages);
   const { teachers } = useSelector((state) => state.teachers);
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
-    console.log("Sending:", message);
+    const newMessage = {
+      _id: Date.now() + 1,
+      sentBy: "principal",
+      image: "",
+      document: "",
+      text: message.trim(),
+      createdAt: new Date().toISOString(),
+      isRead: false,
+    };
+    dispatch(AddMessage(newMessage));
     setMessage("");
   };
   const selectedTeacherDetails = teachers.find(
     (teacher) => teacher._id === selectedConversation?.teacherId,
   );
-  const teacherConversations = conversations.filter(
+  const teacherConversations = conversations?.filter(
     (conversation) =>
       conversation.teacherId === selectedConversation?.teacherId,
   );
@@ -49,7 +69,49 @@ const ChatApplication = () => {
       .filter((message) => message.document)
       .map((message) => message.document) || [];
   const docsAndImageArray = [...allImages, ...allDocuments];
-  console.log(docsAndImageArray);
+
+  const handleSelectedConversation = (conversation) => {
+    setSelectedConversation(conversation);
+    dispatch(MarkAsRead(conversation));
+  };
+
+  const handleNewChatFormSubmit = (e) => {
+    e.preventDefault();
+    if (!selectedTeacher) {
+      alert("please select a teacher to send message");
+      return;
+    }
+    if (!newMessage.trim()) {
+      alert("Please write a message");
+      return;
+    }
+
+    const newConversations = [
+      {
+        _id: Date.now(),
+        teacherId: Number(selectedTeacher),
+        principalId: 1,
+        messages: [
+          {
+            _id: Date.now() + 1,
+            sentBy: "principal",
+            image: "",
+            document: "",
+            text: newMessage.trim(),
+            createdAt: new Date().toISOString(),
+            isRead: false,
+          },
+        ],
+      },
+    ];
+    dispatch(startNewChat(newConversations));
+    setSelectedConversation(newConversations);
+    // Reset form
+    setSelectedTeacher("");
+    setNewMessage("");
+    console.log(newConversations);
+    setOpenNewMessageBox(false);
+  };
 
   return (
     <div className="mt-1 flex h-[85vh] min-h-0 flex-col overflow-hidden">
@@ -86,7 +148,7 @@ const ChatApplication = () => {
                 (teacher) => teacher._id === conversation.teacherId,
               );
               const lastMessage =
-                conversation.messages[conversation.messages?.length - 1];
+                conversation?.messages?.[conversation.messages.length - 1];
               const unreadMessages = conversation.messages?.filter(
                 (message) => message.isRead === false,
               ).length;
@@ -94,7 +156,7 @@ const ChatApplication = () => {
               return (
                 <button
                   key={conversation._id}
-                  onClick={() => setSelectedConversation(conversation)}
+                  onClick={() => handleSelectedConversation(conversation)}
                   className={`flex w-full items-center gap-3 border-b border-slate-100 p-3 cursor-pointer text-left transition ${
                     selectedConversation?._id === conversation._id
                       ? "bg-blue-50"
@@ -105,11 +167,11 @@ const ChatApplication = () => {
                   <div className="relative shrink-0">
                     <img
                       src={teacher?.profileImage}
-                      alt={teacher.firstName + teacher.lastName}
+                      alt={teacher?.firstName + teacher?.lastName}
                       className="h-11 w-11 rounded-full object-cover"
                     />
 
-                    {teacher.isOnline && (
+                    {teacher?.isOnline && (
                       <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
                     )}
                   </div>
@@ -118,17 +180,17 @@ const ChatApplication = () => {
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-2">
                       <h3 className="truncate text-sm font-semibold text-slate-800">
-                        {teacher.firstName + " " + teacher.lastName}
+                        {teacher?.firstName + " " + teacher?.lastName}
                       </h3>
 
                       <span className="shrink-0 text-[10px] text-slate-400">
-                        {new Date(lastMessage.createdAt).toDateString()}
+                        {new Date(lastMessage?.createdAt).toDateString()}
                       </span>
                     </div>
 
                     <div className="mt-1 flex items-center justify-between gap-2">
                       <p className="truncate text-xs text-slate-400">
-                        {lastMessage.text}
+                        {lastMessage?.text}
                       </p>
 
                       {unreadMessages > 0 && (
@@ -214,24 +276,22 @@ const ChatApplication = () => {
 
                   {/* Messages */}
                   <div className="h-full space-y-2">
-                    {conversations.length > 0 ? (
-                      conversations.map((conversation) => {
-                        const isTeacher =
-                          conversation.teacherId ===
-                          selectedTeacherDetails?._id;
-
+                    {teacherConversations.length > 0 ? (
+                      teacherConversations.map((conversation) => {
                         return (
                           <div key={conversation._id} className="space-y-2">
                             {conversation.messages?.map((message) => (
                               <div
                                 key={message._id}
                                 className={`flex ${
-                                  isTeacher ? "justify-start" : "justify-end"
+                                  message.sentBy == "teacher"
+                                    ? "justify-start"
+                                    : "justify-end"
                                 }`}
                               >
                                 <div
                                   className={`max-w-[80%] px-4 py-3 shadow-sm md:max-w-[65%] ${
-                                    isTeacher
+                                    message.sentBy == "teacher"
                                       ? "rounded-2xl rounded-bl-md border border-slate-200 bg-white text-slate-700"
                                       : "rounded-2xl rounded-br-md bg-blue-600 text-white"
                                   }`}
@@ -244,7 +304,7 @@ const ChatApplication = () => {
                                   {/* Message Time */}
                                   <div
                                     className={`mt-1.5 flex items-center justify-end gap-1 text-[10px] ${
-                                      isTeacher
+                                      message.sentBy == "teacher"
                                         ? "text-slate-400"
                                         : "text-blue-100"
                                     }`}
@@ -260,7 +320,11 @@ const ChatApplication = () => {
                                         : ""}
                                     </span>
 
-                                    {!isTeacher && <CheckCheck size={13} />}
+                                    {message.isRead ? (
+                                      <CheckCheck size={13} />
+                                    ) : (
+                                      <Check size={13} />
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -297,31 +361,7 @@ const ChatApplication = () => {
 
             {/* Composer */}
             <div className="shrink-0 border-t border-slate-100 bg-white p-3">
-              <div className="flex items-end gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2 focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-500/10">
-                {/* Actions */}
-                <div className="flex items-center gap-1">
-                  <button
-                    type="button"
-                    className="flex p-2 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600 cursor-pointer"
-                  >
-                    <Smile size={18} />
-                  </button>
-
-                  <button
-                    type="button"
-                    className="flex p-2 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600 cursor-pointer"
-                  >
-                    <Paperclip size={18} />
-                  </button>
-
-                  <button
-                    type="button"
-                    className="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-white hover:text-slate-600 sm:flex cursor-pointer"
-                  >
-                    <Image size={18} />
-                  </button>
-                </div>
-
+              <div className="flex items-end gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2">
                 {/* Message Input */}
                 <textarea
                   value={message}
@@ -336,6 +376,51 @@ const ChatApplication = () => {
                   placeholder="Type a message..."
                   className="max-h-24 min-h-9 flex-1 resize-none bg-transparent p-2 text-sm text-slate-700 outline-none placeholder:text-slate-400"
                 />
+                {/* Document Input */}
+                <label
+                  htmlFor="document-upload"
+                  className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-xl text-slate-500 transition hover:bg-white hover:text-blue-600"
+                  title="Attach document"
+                >
+                  <Paperclip size={20} />
+
+                  <input
+                    id="document-upload"
+                    type="file"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt"
+                    className="hidden"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+
+                      if (file) {
+                        console.log("Document selected:", file);
+                      }
+                    }}
+                  />
+                </label>
+
+                {/* Image Input */}
+                <label
+                  htmlFor="image-upload"
+                  className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-xl text-slate-500 transition hover:bg-white hover:text-blue-600"
+                  title="Attach image"
+                >
+                  <ImageIcon size={19} />
+
+                  <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+
+                      if (file) {
+                        console.log("Image selected:", file);
+                      }
+                    }}
+                  />
+                </label>
 
                 {/* Send */}
                 <button
@@ -668,6 +753,130 @@ const ChatApplication = () => {
           )}
         </aside>
       </div>
+
+      {openNewMessageBox && (
+        <div
+          onClick={() => setOpenNewMessageBox(false)}
+          className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-black/30 p-4 backdrop-blur-sm"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl"
+          >
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setOpenNewMessageBox(false);
+                setSelectedTeacher("");
+              }}
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+            >
+              <X size={20} />
+            </button>
+
+            {/* Header */}
+            <div className="mb-6 pr-10">
+              <h1 className="text-sm font-bold text-slate-800">
+                Select a teacher to start a new conversation
+              </h1>
+            </div>
+
+            {/* Teacher Selection */}
+            <div>
+              <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700">
+                <User size={16} />
+                Select Teacher
+              </label>
+
+              <select
+                value={selectedTeacher}
+                required
+                onChange={(e) => setSelectedTeacher(e.target.value)}
+                className="w-full cursor-pointer border border-slate-200 p-3 text-sm text-slate-700 outline-none "
+              >
+                <option value="">Choose a teacher</option>
+
+                {teachers.map((teacher) => (
+                  <option key={teacher._id} value={teacher._id}>
+                    {teacher.firstName} {teacher.lastName}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Message Composer */}
+            <form
+              onSubmit={handleNewChatFormSubmit}
+              className="mt-2 flex items-end gap-2 rounded-2xl border border-slate-200 p-2 shadow-sm"
+            >
+              {/* Message Input */}
+              <textarea
+                rows={1}
+                value={newMessage}
+                required
+                onChange={(e) => setNewMessage(e.target.value)}
+                placeholder="Start writing a message..."
+                className="max-h-32 min-h-10 flex-1 resize-none bg-transparent px-2 py-2.5 text-sm text-slate-700 outline-none placeholder:text-slate-400"
+              />
+              {/* Document Input */}
+              <label
+                htmlFor="document-upload"
+                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-xl text-slate-500 transition hover:bg-white hover:text-blue-600"
+                title="Attach document"
+              >
+                <Paperclip size={20} />
+
+                <input
+                  id="document-upload"
+                  type="file"
+                  accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+
+                    if (file) {
+                      console.log("Document selected:", file);
+                    }
+                  }}
+                />
+              </label>
+
+              {/* Image Input */}
+              <label
+                htmlFor="image-upload"
+                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-xl text-slate-500 transition hover:bg-white hover:text-blue-600"
+                title="Attach image"
+              >
+                <ImageIcon size={19} />
+
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+
+                    if (file) {
+                      console.log("Image selected:", file);
+                    }
+                  }}
+                />
+              </label>
+
+              {/* Send Button */}
+              <button
+                type="submit"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm transition hover:bg-blue-700 active:scale-95 cursor-pointer"
+                title="Send message"
+              >
+                <SendIcon size={18} />
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

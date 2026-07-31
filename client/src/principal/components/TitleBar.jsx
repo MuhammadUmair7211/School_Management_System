@@ -1,19 +1,26 @@
-import { Bell, LogOut, MessageSquare, Search, Sparkles } from "lucide-react";
+import { LogOut, MessageSquare, Search, Sparkles } from "lucide-react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import NotificationButton from "./NotificationButton";
 
 const TitleBar = () => {
+  const navigate = useNavigate();
   const { notifications } = useSelector((state) => state.notifications);
-  const { messages } = useSelector((state) => state.messages);
+  const { conversations } = useSelector((state) => state.messages);
+
   const filteredNotifications = notifications?.filter(
     (notification) =>
       notification.status === "unread" &&
       notification.receiverRole === "principal",
   );
-
-  const filteredMessages = messages?.filter(
-    (message) => !message.isRead && message.receiverRole === "principal",
-  );
+  const unreadMessageCount =
+    conversations?.reduce(
+      (total, conversation) =>
+        total +
+        (conversation.messages?.filter((message) => !message.isRead).length ||
+          0),
+      0,
+    ) || 0;
 
   const handleLogout = () => {
     console.log("Logout clicked");
@@ -62,15 +69,8 @@ const TitleBar = () => {
         {/* RIGHT - Actions */}
         <div className="flex shrink-0 items-center gap-2">
           {/* Notifications */}
-          <Link
-            to="/notifications"
-            title="Notifications"
-            className="group relative flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition-all duration-200 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600 hover:shadow-sm"
-          >
-            <Bell
-              size={19}
-              className="transition-transform duration-200 group-hover:scale-105"
-            />
+          <div className="relative">
+            <NotificationButton onClick={() => navigate("/notifications")} />
 
             {filteredNotifications.length > 0 && (
               <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-white bg-red-500 px-1 text-[9px] font-bold text-white shadow-sm">
@@ -79,7 +79,7 @@ const TitleBar = () => {
                   : filteredNotifications.length}
               </span>
             )}
-          </Link>
+          </div>
 
           {/* Messages */}
           <Link
@@ -92,9 +92,9 @@ const TitleBar = () => {
               className="transition-transform duration-200 group-hover:scale-105"
             />
 
-            {filteredMessages.length > 0 && (
+            {unreadMessageCount > 0 && (
               <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-white bg-blue-600 px-1 text-[9px] font-bold text-white shadow-sm">
-                {filteredMessages.length > 99 ? "99+" : filteredMessages.length}
+                {unreadMessageCount}
               </span>
             )}
           </Link>
@@ -106,7 +106,7 @@ const TitleBar = () => {
           <button
             onClick={handleLogout}
             title="Logout"
-            className="group flex h-10 items-center justify-center gap-2 rounded-xl border border-red-100 bg-red-50 px-3 text-red-600 transition-all duration-200 hover:border-red-200 hover:bg-red-100 hover:shadow-sm md:px-4"
+            className="group flex h-10 items-center justify-center gap-2 rounded-xl border border-red-100 bg-red-50 px-3 text-red-600 transition-all hover:border-red-200 hover:bg-red-100 hover:shadow-sm md:px-4 cursor-pointer duration-300"
           >
             <LogOut
               size={18}
