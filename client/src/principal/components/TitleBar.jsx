@@ -1,4 +1,10 @@
-import { LogOut, MessageSquare, Search, Sparkles } from "lucide-react";
+import {
+  CalendarDays,
+  LogOut,
+  MessageSquare,
+  Search,
+  Sparkles,
+} from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import NotificationButton from "./NotificationButton";
@@ -27,7 +33,7 @@ const TitleBar = () => {
   };
 
   return (
-    <header className="relative z-30 px-4">
+    <header className="relative">
       <div className="flex items-center justify-between gap-4">
         {/* LEFT - Welcome */}
         <div className="min-w-0">
@@ -44,10 +50,21 @@ const TitleBar = () => {
               className="hidden shrink-0 text-amber-500 sm:block"
             />
           </div>
-
-          <p className="mt-1 hidden text-xs font-medium text-slate-400 sm:block md:text-sm">
-            Here's what's happening in your school today.
-          </p>
+          <div className="mt-1 hidden text-xs font-medium text-slate-400 md:flex items-center gap-1 md:text-sm">
+            <CalendarDays size={13} className="text-muted-foreground" />
+            <p className="text-xs text-muted-foreground">
+              {new Date().toLocaleDateString("en-US", {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}{" "}
+              — Academic Year{" "}
+              {new Date().getMonth() >= 7
+                ? `${new Date().getFullYear()} – ${String(new Date().getFullYear() + 1).slice(-2)}`
+                : `${new Date().getFullYear() - 1}–${String(new Date().getFullYear()).slice(-2)}`}
+            </p>
+          </div>
         </div>
 
         {/* CENTER - Search */}
@@ -61,7 +78,7 @@ const TitleBar = () => {
             <input
               type="text"
               placeholder="Search students, teachers, classes..."
-              className="h-11 w-full rounded-full border border-slate-200 bg-slate-50/70 pl-11 pr-20 text-sm font-medium text-slate-700 outline-none transition-all duration-200 "
+              className="p-3 w-full rounded-full border border-slate-200 bg-slate-50/70 pl-11 pr-20 text-sm font-medium text-slate-700 outline-none transition-all duration-200 "
             />
           </div>
         </div>
@@ -73,7 +90,7 @@ const TitleBar = () => {
             <NotificationButton onClick={() => navigate("/notifications")} />
 
             {filteredNotifications.length > 0 && (
-              <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-white bg-red-500 px-1 text-[9px] font-bold text-white shadow-sm">
+              <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-white bg-red-500 p-1 text-[9px] font-bold text-white shadow-sm">
                 {filteredNotifications.length > 99
                   ? "99+"
                   : filteredNotifications.length}
@@ -85,7 +102,7 @@ const TitleBar = () => {
           <Link
             to="/messages"
             title="Messages"
-            className="group relative flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600 hover:shadow-sm"
+            className="group relative flex p-3 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600 hover:shadow-sm"
           >
             <MessageSquare
               size={19}
@@ -106,7 +123,7 @@ const TitleBar = () => {
           <button
             onClick={handleLogout}
             title="Logout"
-            className="group flex h-10 items-center justify-center gap-2 rounded-xl border border-red-100 bg-red-50 px-3 text-red-600 transition-all hover:border-red-200 hover:bg-red-100 hover:shadow-sm md:px-4 cursor-pointer duration-300"
+            className="group flex p-3 items-center justify-center gap-2 rounded-xl border border-red-100 bg-red-50 px-3 text-red-600 transition-all hover:border-red-200 hover:bg-red-100 hover:shadow-sm md:px-4 cursor-pointer duration-300"
           >
             <LogOut
               size={18}

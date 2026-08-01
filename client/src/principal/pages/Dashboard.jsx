@@ -123,7 +123,7 @@ const Dashboard = () => {
                 <img
                   src="/footer-logo.jpg"
                   alt="Green Valley High School"
-                  className="h-52 w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
+                  className="h-50 w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
 
                 {/* Overlay */}
@@ -147,12 +147,12 @@ const Dashboard = () => {
           {/* ================================= */}
           <aside className="flex min-w-0 flex-col gap-2 xl:col-span-3">
             {/* Fee Collection */}
-            <div className="overflow-hidden rounded-xl border border-slate-200 p-4 shadow-sm transition-shadow duration-300 hover:shadow-md">
+            <div className="overflow-hidden rounded-xl border border-slate-200 p-3 shadow-sm transition-shadow duration-300 hover:shadow-md">
               <FeeCollectionChart />
             </div>
 
             {/* Recent Activities */}
-            <div className="flex-1 overflow-hidden rounded-xl border border-slate-200 p-4 shadow-sm transition-shadow duration-300 hover:shadow-md">
+            <div className="flex-1 overflow-hidden rounded-xl border border-slate-200 p-3 shadow-sm transition-shadow duration-300 hover:shadow-md">
               <RecentActivities />
             </div>
           </aside>
